@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "l2world:quest_line/slime_carpet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unstable_slime": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "l2world:unstable_slime"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_unstable_slime",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "l2world:quest_line/slime_carpet"
+    ]
+  }
+}

@@ -1,7 +1,15 @@
 {
   "values": [
-    "l2foundation:lead_block",
-    "l2foundation:layline_charger",
-    "l2foundation:maze_wall"
+    "l2world:steel_block",
+    "l2world:layroot_block",
+    "l2world:layline_block",
+    "l2world:oldroot_block",
+    "l2world:knightsteel_block",
+    "l2world:dispellium_block",
+    "l2world:heavysteel_block",
+    "l2world:eternium_block",
+    "l2world:lead_block",
+    "l2world:layline_charger",
+    "l2world:maze_wall"
   ]
 }

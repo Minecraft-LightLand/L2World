@@ -1,0 +1,15 @@
+{
+  "type": "l2world:medicine_armor",
+  "key": {
+    "A": {
+      "item": "l2world:medicine_leather"
+    }
+  },
+  "pattern": [
+    "A A",
+    "A A"
+  ],
+  "result": {
+    "item": "l2world:medicine_leather_helmet"
+  }
+}

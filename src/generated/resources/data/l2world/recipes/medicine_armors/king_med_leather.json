@@ -1,0 +1,20 @@
+{
+  "type": "l2world:medicine_armor",
+  "key": {
+    "O": {
+      "item": "l2world:king_leather"
+    },
+    "X": {
+      "item": "l2world:medicine_leather"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XOX",
+    "XXX"
+  ],
+  "result": {
+    "count": 8,
+    "item": "l2world:king_med_leather"
+  }
+}

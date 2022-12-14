@@ -1,0 +1,16 @@
+{
+  "type": "l2world:medicine_armor",
+  "key": {
+    "A": {
+      "item": "l2world:king_med_leather"
+    }
+  },
+  "pattern": [
+    "A A",
+    "AAA",
+    "AAA"
+  ],
+  "result": {
+    "item": "l2world:king_leather_leggings"
+  }
+}

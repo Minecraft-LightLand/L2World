@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "l2world:steel_ingot"
+    },
+    "C": {
+      "item": "minecraft:gold_nugget"
+    },
+    "S": {
+      "item": "l2world:knight_scrap"
+    }
+  },
+  "pattern": [
+    "CSC",
+    "SAS",
+    "CSC"
+  ],
+  "result": {
+    "item": "l2world:heavysteel_ingot"
+  }
+}
