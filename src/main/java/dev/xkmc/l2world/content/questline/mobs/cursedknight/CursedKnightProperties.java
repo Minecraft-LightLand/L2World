@@ -6,7 +6,7 @@ import dev.xkmc.l2world.content.questline.common.mobs.SimpleEquipment;
 import dev.xkmc.l2world.content.questline.common.mobs.SoundPackage;
 import dev.xkmc.l2world.content.questline.common.mobs.SpawnedEquipment;
 import dev.xkmc.l2world.init.data.LWMats;
-import dev.xkmc.l2world.init.registrate.LFEntities;
+import dev.xkmc.l2world.init.registrate.LWEntities;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.random.WeightedEntry;
 import net.minecraft.util.random.WeightedRandomList;
@@ -37,7 +37,7 @@ public class CursedKnightProperties {
 	}
 
 	public static final Set<EntityType<?>> ALLY_TYPE = Set.of(
-			LFEntities.ET_CURSED_KNIGHT.get(), LFEntities.ET_CURSED_ARCHER.get(), LFEntities.ET_CURSED_SHIELD.get()
+			LWEntities.ET_CURSED_KNIGHT.get(), LWEntities.ET_CURSED_ARCHER.get(), LWEntities.ET_CURSED_SHIELD.get()
 	);
 
 	public static final BaseMonster.EntityConfig CONFIG_KNIGHT = new BaseMonster.EntityConfig(MobType.UNDEAD, SOUND_ZOMBIE,

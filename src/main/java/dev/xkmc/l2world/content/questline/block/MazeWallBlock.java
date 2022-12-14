@@ -5,8 +5,8 @@ import dev.xkmc.l2library.block.one.MirrorRotateBlockMethod;
 import dev.xkmc.l2library.block.one.PushReactionBlockMethod;
 import dev.xkmc.l2library.block.one.SpecialDropBlockMethod;
 import dev.xkmc.l2world.content.questline.mobs.cursedknight.BaseCursedKnight;
-import dev.xkmc.l2world.init.registrate.LFEntities;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWEntities;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -89,9 +89,9 @@ public class MazeWallBlock {
 					new AABB(pos.above(height - 1)).inflate(radius, height, radius), e -> true).size();
 			if (count > 6)
 				return;
-			spawn(LFEntities.ET_CURSED_KNIGHT.get(), level, pos.offset(0, 1, 0));
-			spawn(LFEntities.ET_CURSED_SHIELD.get(), level, pos.offset(0, 1, 1));
-			spawn(LFEntities.ET_CURSED_ARCHER.get(), level, pos.offset(0, 1, -1));
+			spawn(LWEntities.ET_CURSED_KNIGHT.get(), level, pos.offset(0, 1, 0));
+			spawn(LWEntities.ET_CURSED_SHIELD.get(), level, pos.offset(0, 1, 1));
+			spawn(LWEntities.ET_CURSED_ARCHER.get(), level, pos.offset(0, 1, -1));
 		}
 
 		private void spawn(EntityType<? extends BaseCursedKnight<?>> type, ServerLevel level, BlockPos pos) {
@@ -197,7 +197,7 @@ public class MazeWallBlock {
 		@Override
 		public InteractionResult onClick(BlockState state, Level level, BlockPos pos, Player pl, InteractionHand hand, BlockHitResult result) {
 			ItemStack stack = pl.getItemInHand(hand);
-			if (stack.is(LFItems.DISPELL_DUST.get())) {
+			if (stack.is(LWItems.DISPELL_DUST.get())) {
 				if (!level.isClientSide()) {
 					for (Direction dire : Direction.values()) {
 						BlockPos next = pos.relative(dire);

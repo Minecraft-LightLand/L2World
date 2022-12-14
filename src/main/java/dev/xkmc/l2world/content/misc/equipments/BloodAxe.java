@@ -1,7 +1,7 @@
 package dev.xkmc.l2world.content.misc.equipments;
 
 import dev.xkmc.l2complements.init.registrate.LCEffects;
-import dev.xkmc.l2world.init.registrate.LFEffects;
+import dev.xkmc.l2world.init.registrate.LWEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -20,13 +20,13 @@ public class BloodAxe extends AxeItem {
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity user) {
 		if (user instanceof ServerPlayer player) {
 			{
-				MobEffectInstance ins = player.getEffect(LFEffects.BLOOD_THURST.get());
+				MobEffectInstance ins = player.getEffect(LWEffects.BLOOD_THURST.get());
 				if (ins != null) {
 					player.addEffect(new MobEffectInstance(MobEffects.SATURATION, (ins.getAmplifier() + 1) * 4));
 				}
 			}
 			{
-				MobEffectInstance ins = player.getEffect(LFEffects.ARMOR_BREAKER.get());
+				MobEffectInstance ins = player.getEffect(LWEffects.ARMOR_BREAKER.get());
 				if (ins != null) {
 					target.addEffect(new MobEffectInstance(LCEffects.ARMOR_REDUCE.get(), 200, ins.getAmplifier()));
 				}

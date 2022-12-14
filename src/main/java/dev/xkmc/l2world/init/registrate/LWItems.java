@@ -5,7 +5,7 @@ import dev.xkmc.l2world.content.misc.equipments.MedicineArmor;
 import dev.xkmc.l2world.content.misc.equipments.MedicineLeather;
 import dev.xkmc.l2world.content.questline.item.DispellWaterBottle;
 import dev.xkmc.l2world.content.questline.item.SlimeTentacleItem;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2world.init.data.LWMats;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
@@ -27,18 +27,18 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static dev.xkmc.l2world.init.L2Foundation.REGISTRATE;
+import static dev.xkmc.l2world.init.L2World.REGISTRATE;
 
 @SuppressWarnings({"rawtypes", "unchecked", "unsafe"})
 @MethodsReturnNonnullByDefault
-public class LFItems {
+public class LWItems {
 
 	public static class Tab extends CreativeModeTab {
 
 		private final Supplier<ItemEntry> icon;
 
 		public Tab(String id, Supplier<ItemEntry> icon) {
-			super(L2Foundation.MODID + "." + id);
+			super(L2World.MODID + "." + id);
 			this.icon = icon;
 		}
 
@@ -48,8 +48,8 @@ public class LFItems {
 		}
 	}
 
-	public static final Tab TAB_MAIN = new Tab("material", () -> LFItems.DISPELL_DUST);
-	public static final Tab TAB_GENERATED = new Tab("generated", () -> LFItems.GEN_ITEM[0][0]);
+	public static final Tab TAB_MAIN = new Tab("material", () -> LWItems.DISPELL_DUST);
+	public static final Tab TAB_GENERATED = new Tab("generated", () -> LWItems.GEN_ITEM[0][0]);
 
 	static {
 		REGISTRATE.creativeModeTab(() -> TAB_MAIN);
@@ -75,8 +75,8 @@ public class LFItems {
 
 	static {
 
-		MAT_INGOTS = L2Foundation.MATS.genMats(LWMats.values(), "ingot", Tags.Items.INGOTS);
-		MAT_NUGGETS = L2Foundation.MATS.genMats(LWMats.values(), "nugget", Tags.Items.NUGGETS);
+		MAT_INGOTS = L2World.MATS.genMats(LWMats.values(), "ingot", Tags.Items.INGOTS);
+		MAT_NUGGETS = L2World.MATS.genMats(LWMats.values(), "nugget", Tags.Items.NUGGETS);
 
 		// materials
 		{
@@ -95,10 +95,10 @@ public class LFItems {
 					.color(() -> () -> (stack, val) -> val > 0 ? -1 : ((DyeableLeatherItem) stack.getItem()).getColor(stack))
 					.defaultModel().defaultLang().register();
 			MEDICINE_ARMOR = genArmor("medicine_leather",
-					(slot, p) -> new MedicineArmor(ArmorMat.MEDICINE_LEATHER, slot, p), e -> e.model(LFItems::createDoubleLayerModel)
+					(slot, p) -> new MedicineArmor(ArmorMat.MEDICINE_LEATHER, slot, p), e -> e.model(LWItems::createDoubleLayerModel)
 							.color(() -> () -> (stack, val) -> val > 0 ? -1 : ((DyeableLeatherItem) stack.getItem()).getColor(stack)));
 			KING_MED_ARMOR = genArmor("king_leather",
-					(slot, p) -> new MedicineArmor(ArmorMat.KING_LEATHER, slot, p), e -> e.model(LFItems::createDoubleLayerModel)
+					(slot, p) -> new MedicineArmor(ArmorMat.KING_LEATHER, slot, p), e -> e.model(LWItems::createDoubleLayerModel)
 							.color(() -> () -> (stack, val) -> val > 0 ? -1 : ((DyeableLeatherItem) stack.getItem()).getColor(stack)));
 		}
 		{
@@ -129,20 +129,20 @@ public class LFItems {
 			//TODO HOLY_WATER = REGISTRATE.virtualFluid("holy_water").defaultLang().register();
 		}
 		{
-			registerEgg("layline_zombie_spawn_egg", 0, 0, () -> LFEntities.ET_LAYLINE_ZOMBIE);
-			registerEgg("layline_skeleton_spawn_egg", 0, 0, () -> LFEntities.ET_LAYLINE_SKELETON);
-			registerEgg("cursed_knight_spawn_egg", 0, 0, () -> LFEntities.ET_CURSED_KNIGHT);
-			registerEgg("cursed_archer_spawn_egg", 0, 0, () -> LFEntities.ET_CURSED_ARCHER);
-			registerEgg("cursed_shield_spawn_egg", 0, 0, () -> LFEntities.ET_CURSED_SHIELD);
-			registerEgg("potion_slime_spawn_egg", 0, 0, () -> LFEntities.ET_POTION_SLIME);
-			registerEgg("stone_slime_spawn_egg", 0, 0, () -> LFEntities.ET_STONE_SLIME);
-			registerEgg("vine_slime_spawn_egg", 0, 0, () -> LFEntities.ET_VINE_SLIME);
-			registerEgg("carpet_slime_spawn_egg", 0, 0, () -> LFEntities.ET_CARPET_SLIME);
-			registerEgg("boss_slime_spawn_egg", 0, 0, () -> LFEntities.ET_BOSS_SLIME);
+			registerEgg("layline_zombie_spawn_egg", 0, 0, () -> LWEntities.ET_LAYLINE_ZOMBIE);
+			registerEgg("layline_skeleton_spawn_egg", 0, 0, () -> LWEntities.ET_LAYLINE_SKELETON);
+			registerEgg("cursed_knight_spawn_egg", 0, 0, () -> LWEntities.ET_CURSED_KNIGHT);
+			registerEgg("cursed_archer_spawn_egg", 0, 0, () -> LWEntities.ET_CURSED_ARCHER);
+			registerEgg("cursed_shield_spawn_egg", 0, 0, () -> LWEntities.ET_CURSED_SHIELD);
+			registerEgg("potion_slime_spawn_egg", 0, 0, () -> LWEntities.ET_POTION_SLIME);
+			registerEgg("stone_slime_spawn_egg", 0, 0, () -> LWEntities.ET_STONE_SLIME);
+			registerEgg("vine_slime_spawn_egg", 0, 0, () -> LWEntities.ET_VINE_SLIME);
+			registerEgg("carpet_slime_spawn_egg", 0, 0, () -> LWEntities.ET_CARPET_SLIME);
+			registerEgg("boss_slime_spawn_egg", 0, 0, () -> LWEntities.ET_BOSS_SLIME);
 		}
 
 		REGISTRATE.creativeModeTab(() -> TAB_GENERATED);
-		GEN_ITEM = L2Foundation.MATS.genItem(LWMats.values());
+		GEN_ITEM = L2World.MATS.genItem(LWMats.values());
 	}
 
 	private static void registerEgg(String id, int col_0, int col_1, Supplier<EntityEntry<? extends Mob>> sup) {
@@ -179,7 +179,7 @@ public class LFItems {
 	}
 
 	public static <T extends Item> void simpleModel(DataGenContext<Item, T> ctx, RegistrateItemModelProvider pvd, String path) {
-		pvd.generated(ctx, new ResourceLocation(L2Foundation.MODID, "item/" + path + "/" + ctx.getName()));
+		pvd.generated(ctx, new ResourceLocation(L2World.MODID, "item/" + path + "/" + ctx.getName()));
 	}
 
 	public static class ArmorItems<T extends ArmorItem> {

@@ -10,7 +10,7 @@ import java.util.Map;
 public class ConfigGenDispatcher extends ConfigDataProvider {
 
 	public ConfigGenDispatcher(DataGenerator generator) {
-		super(generator, "data/l2foundation/l2foundation_config/", "L2Foundation Json Config Generator");
+		super(generator, "data/l2world/l2world_config/", "L2World Json Config Generator");
 	}
 
 	@Override

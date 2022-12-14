@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.questline.world.structure.curseknight;
 
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2world.init.worldgenreg.StructureRegistrate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -52,7 +52,7 @@ public class CKMazePiece extends TemplateStructurePiece {
 	}
 
 	private static ResourceLocation makeResourceLocation(String id) {
-		return new ResourceLocation(L2Foundation.MODID, "cursedknight_maze/" + id);
+		return new ResourceLocation(L2World.MODID, "cursedknight_maze/" + id);
 	}
 
 	private final ShiftType shift;

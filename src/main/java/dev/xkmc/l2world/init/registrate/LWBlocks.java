@@ -1,7 +1,7 @@
 package dev.xkmc.l2world.init.registrate;
 
 import dev.xkmc.l2world.content.questline.block.*;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2world.init.data.LWMats;
 import dev.xkmc.l2library.block.DelegateBlock;
 import dev.xkmc.l2library.block.DelegateBlockProperties;
@@ -28,10 +28,10 @@ import java.util.function.Function;
 /**
  * handles blocks and block entities
  */
-public class LFBlocks {
+public class LWBlocks {
 
 	static {
-		L2Foundation.REGISTRATE.creativeModeTab(() -> LFItems.TAB_MAIN);
+		L2World.REGISTRATE.creativeModeTab(() -> LWItems.TAB_MAIN);
 	}
 
 	public static final BlockEntry<Block> LEAD_BLOCK;
@@ -44,16 +44,16 @@ public class LFBlocks {
 
 	public static final BlockEntry<DelegateBlock> MAZE_WALL;
 
-	public static final BlockEntry<AnvilBlock> ETERNAL_ANVIL = L2Foundation.REGISTRATE
+	public static final BlockEntry<AnvilBlock> ETERNAL_ANVIL = L2World.REGISTRATE
 			.block("eternal_anvil", p -> new AnvilBlock(BlockBehaviour.Properties.copy(Blocks.ANVIL)))
 			.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(), pvd.models().withExistingParent(ctx.getName(), "anvil")))
 			.register();
 
-	public static final BlockEntry<Block>[] GEN_BLOCK = L2Foundation.MATS.genBlockMats(LWMats.values());
+	public static final BlockEntry<Block>[] GEN_BLOCK = L2World.MATS.genBlockMats(LWMats.values());
 
 	static {
 		{
-			LEAD_BLOCK = L2Foundation.REGISTRATE.block("lead_block",
+			LEAD_BLOCK = L2World.REGISTRATE.block("lead_block",
 							p -> new Block(Block.Properties.copy(Blocks.IRON_BLOCK)))
 					.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 					.defaultBlockstate().defaultLoot().defaultLang().simpleItem().register();
@@ -64,30 +64,30 @@ public class LFBlocks {
 			BlockBehaviour.Properties prop_line = BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.WOOD)
 					.noCollission().instabreak().randomTicks();
 			BlockBehaviour.Properties prop_charger = BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK);
-			LAYROOT_HEAD = L2Foundation.REGISTRATE.block("layroot_head", p -> new LayrootHead(prop_root))
+			LAYROOT_HEAD = L2World.REGISTRATE.block("layroot_head", p -> new LayrootHead(prop_root))
 					.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(),
 							pvd.models().cross(ctx.getName(), pvd.blockTexture(ctx.getEntry())).renderType("cutout")))
 					.item().model((ctx, pvd) -> pvd.generated(ctx::getEntry, pvd.modLoc("block/" + ctx.getName()))).build()
 					.defaultLoot().defaultLang().tag(BlockTags.CLIMBABLE).register();
-			LAYROOT_BODY = L2Foundation.REGISTRATE.block("layroot_body", p -> new LayrootBody(prop_root))
+			LAYROOT_BODY = L2World.REGISTRATE.block("layroot_body", p -> new LayrootBody(prop_root))
 					.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(),
 							pvd.models().cross(ctx.getName(), pvd.blockTexture(ctx.getEntry())).renderType("cutout")))
 					.loot((table, block) -> table.dropOther(block, LAYROOT_HEAD.get()))
 					.defaultLang().tag(BlockTags.CLIMBABLE).register();
-			LAYLINE_HEAD = L2Foundation.REGISTRATE.block("layline_head", p -> new LaylineHead(prop_line))
+			LAYLINE_HEAD = L2World.REGISTRATE.block("layline_head", p -> new LaylineHead(prop_line))
 					.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(),
 							pvd.models().cross(ctx.getName(), pvd.blockTexture(ctx.getEntry())).renderType("cutout")))
 					.item().model((ctx, pvd) -> pvd.generated(ctx::getEntry, pvd.modLoc("block/" + ctx.getName()))).build()
 					.defaultLoot().defaultLang().tag(BlockTags.CLIMBABLE).register();
-			LAYLINE_CHARGER = L2Foundation.REGISTRATE.block("layline_charger", LaylineChargerBlock::new)
+			LAYLINE_CHARGER = L2World.REGISTRATE.block("layline_charger", LaylineChargerBlock::new)
 					.tag(BlockTags.MINEABLE_WITH_PICKAXE)
 					.defaultBlockstate().simpleItem().defaultLoot().defaultLang().register();
 			BlockBehaviour.Properties prop_slime = BlockBehaviour.Properties.of(Material.WEB).noCollission().strength(4.0F);
-			SLIME_CARPET = L2Foundation.REGISTRATE.block("slime_carpet", p -> new SlimeCarpet(prop_slime))
+			SLIME_CARPET = L2World.REGISTRATE.block("slime_carpet", p -> new SlimeCarpet(prop_slime))
 					.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(), pvd.models().carpet(ctx.getName(), pvd.blockTexture(ctx.getEntry()))))
 					.tag(BlockTags.MINEABLE_WITH_HOE)
 					.simpleItem().loot(RegistrateBlockLootTables::dropWhenSilkTouch).defaultLang().register();
-			SLIME_VINE = L2Foundation.REGISTRATE.block("slime_vine", p -> new WebBlock(prop_slime))
+			SLIME_VINE = L2World.REGISTRATE.block("slime_vine", p -> new WebBlock(prop_slime))
 					.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(),
 							pvd.models().cross(ctx.getName(), pvd.blockTexture(ctx.getEntry())).renderType("cutout")))
 					.item().model((ctx, pvd) -> pvd.generated(ctx::getEntry, pvd.modLoc("block/" + ctx.getName()))).build()
@@ -98,13 +98,13 @@ public class LFBlocks {
 		{
 			DelegateBlockProperties BP_METAL = DelegateBlockProperties.copy(Blocks.OBSIDIAN).make(BlockBehaviour.Properties::noLootTable);
 
-			MAZE_WALL = L2Foundation.REGISTRATE.block("maze_wall", p -> DelegateBlock.newBaseBlock(BP_METAL,
+			MAZE_WALL = L2World.REGISTRATE.block("maze_wall", p -> DelegateBlock.newBaseBlock(BP_METAL,
 							MazeWallBlock.NEIGHBOR, MazeWallBlock.ALL_DIRE_STATE))
 					.blockstate((ctx, pvd) -> {
 						ModelFile in = pvd.models().withExistingParent("maze_block_in", "block/template_single_face")
-								.texture("texture", new ResourceLocation(L2Foundation.MODID, "block/maze_block_in"));
+								.texture("texture", new ResourceLocation(L2World.MODID, "block/maze_block_in"));
 						ModelFile out = pvd.models().withExistingParent("maze_block_in", "block/template_single_face")
-								.texture("texture", new ResourceLocation(L2Foundation.MODID, "block/maze_block_out"));
+								.texture("texture", new ResourceLocation(L2World.MODID, "block/maze_block_out"));
 						var builder = pvd.getMultipartBuilder(ctx.getEntry());
 						BiConsumer<BooleanProperty, Function<
 								ConfiguredModel.Builder<MultiPartBlockStateBuilder.PartBuilder>,
@@ -122,7 +122,7 @@ public class LFBlocks {
 					.tag(BlockTags.WITHER_IMMUNE, BlockTags.DRAGON_IMMUNE)
 					.tag(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL)
 					.defaultLang().item().model((ctx, pvd) -> pvd.withExistingParent(ctx.getName(), "block/cube_all")
-							.texture("all", new ResourceLocation(L2Foundation.MODID, "block/maze_block_out")))
+							.texture("all", new ResourceLocation(L2World.MODID, "block/maze_block_out")))
 					.build().register();
 		}
 	}

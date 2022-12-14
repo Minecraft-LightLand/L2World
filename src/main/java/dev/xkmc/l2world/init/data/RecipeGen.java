@@ -1,8 +1,8 @@
 package dev.xkmc.l2world.init.data;
 
-import dev.xkmc.l2world.init.L2Foundation;
-import dev.xkmc.l2world.init.registrate.LFBlocks;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.L2World;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import dev.xkmc.l2library.base.recipe.ResultTagShapedBuilder;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
@@ -41,24 +41,24 @@ public class RecipeGen {
 
 			currentFolder = "storage/";
 			for (int i = 0; i < LWMats.values().length; i++) {
-				storage(pvd, LFItems.MAT_NUGGETS[i], LFItems.MAT_INGOTS[i], LFBlocks.GEN_BLOCK[i]);
+				storage(pvd, LWItems.MAT_NUGGETS[i], LWItems.MAT_INGOTS[i], LWBlocks.GEN_BLOCK[i]);
 			}
 
-			storage(pvd, LFItems.LEAD_NUGGET, LFItems.LEAD_INGOT, LFBlocks.LEAD_BLOCK);
+			storage(pvd, LWItems.LEAD_NUGGET, LWItems.LEAD_INGOT, LWBlocks.LEAD_BLOCK);
 		}
 
 		currentFolder = "quest_line/";
 		{
-			full(pvd, LWMats.STEEL.getIngot(), LFItems.KNIGHT_SCRAP.get(), Items.GOLD_NUGGET, LWMats.HEAVYSTEEL.getIngot(), 1);
-			cross(pvd, LWMats.LAYLINE.getIngot(), LFItems.OLDROOT.get(), LWMats.OLDROOT.getIngot(), 1);
-			unlock(pvd, new ShapedRecipeBuilder(LFBlocks.SLIME_CARPET.get(), 8)::unlockedBy,
-					LFItems.UNSTABLE_SLIME.get()).pattern("ABA")
-					.define('A', Items.SLIME_BALL).define('B', LFItems.UNSTABLE_SLIME.get())
-					.save(pvd, getID(LFBlocks.SLIME_CARPET.get().asItem()));
-			unlock(pvd, new ShapedRecipeBuilder(LFBlocks.SLIME_VINE.get(), 1)::unlockedBy,
-					LFItems.UNSTABLE_SLIME.get()).pattern("B B").pattern(" A ").pattern("B B")
-					.define('A', Items.VINE).define('B', LFItems.UNSTABLE_SLIME.get())
-					.save(pvd, getID(LFBlocks.SLIME_VINE.get().asItem()));
+			full(pvd, LWMats.STEEL.getIngot(), LWItems.KNIGHT_SCRAP.get(), Items.GOLD_NUGGET, LWMats.HEAVYSTEEL.getIngot(), 1);
+			cross(pvd, LWMats.LAYLINE.getIngot(), LWItems.OLDROOT.get(), LWMats.OLDROOT.getIngot(), 1);
+			unlock(pvd, new ShapedRecipeBuilder(LWBlocks.SLIME_CARPET.get(), 8)::unlockedBy,
+					LWItems.UNSTABLE_SLIME.get()).pattern("ABA")
+					.define('A', Items.SLIME_BALL).define('B', LWItems.UNSTABLE_SLIME.get())
+					.save(pvd, getID(LWBlocks.SLIME_CARPET.get().asItem()));
+			unlock(pvd, new ShapedRecipeBuilder(LWBlocks.SLIME_VINE.get(), 1)::unlockedBy,
+					LWItems.UNSTABLE_SLIME.get()).pattern("B B").pattern(" A ").pattern("B B")
+					.define('A', Items.VINE).define('B', LWItems.UNSTABLE_SLIME.get())
+					.save(pvd, getID(LWBlocks.SLIME_VINE.get().asItem()));
 		}
 
 		currentFolder = "medicine_effects/";
@@ -75,27 +75,27 @@ public class RecipeGen {
 
 		currentFolder = "medicine_armors/";
 		{
-			unlock(pvd, new MedArmorBuilder(LFItems.KING_MED_LEATHER.get(), 8)::unlockedBy, LFItems.KING_LEATHER.get())
+			unlock(pvd, new MedArmorBuilder(LWItems.KING_MED_LEATHER.get(), 8)::unlockedBy, LWItems.KING_LEATHER.get())
 					.pattern("XXX").pattern("XOX").pattern("XXX")
-					.define('X', LFItems.MEDICINE_LEATHER.get())
-					.define('O', LFItems.KING_LEATHER.get())
-					.save(pvd, getID(LFItems.KING_MED_LEATHER.get()));
-			medArmor(pvd, LFItems.MEDICINE_LEATHER.get(), LFItems.MEDICINE_ARMOR);
-			medArmor(pvd, LFItems.KING_MED_LEATHER.get(), LFItems.KING_MED_ARMOR);
+					.define('X', LWItems.MEDICINE_LEATHER.get())
+					.define('O', LWItems.KING_LEATHER.get())
+					.save(pvd, getID(LWItems.KING_MED_LEATHER.get()));
+			medArmor(pvd, LWItems.MEDICINE_LEATHER.get(), LWItems.MEDICINE_ARMOR);
+			medArmor(pvd, LWItems.KING_MED_LEATHER.get(), LWItems.KING_MED_ARMOR);
 		}
 
 	}
 
 	private static ResourceLocation getID(Item item) {
-		return new ResourceLocation(L2Foundation.MODID, currentFolder + ForgeRegistries.ITEMS.getKey(item).getPath());
+		return new ResourceLocation(L2World.MODID, currentFolder + ForgeRegistries.ITEMS.getKey(item).getPath());
 	}
 
 	private static ResourceLocation getID(Item item, String suffix) {
-		return new ResourceLocation(L2Foundation.MODID, currentFolder + ForgeRegistries.ITEMS.getKey(item).getPath() + suffix);
+		return new ResourceLocation(L2World.MODID, currentFolder + ForgeRegistries.ITEMS.getKey(item).getPath() + suffix);
 	}
 
 	private static ResourceLocation getID(String suffix) {
-		return new ResourceLocation(L2Foundation.MODID, currentFolder + suffix);
+		return new ResourceLocation(L2World.MODID, currentFolder + suffix);
 	}
 
 	private static void cross(RegistrateRecipeProvider pvd, Item core, Item side, Item out, int count) {
@@ -133,8 +133,8 @@ public class RecipeGen {
 	}
 
 	private static void genTools(RegistrateRecipeProvider pvd, int i, Item stick) {
-		Item item = LFItems.MAT_INGOTS[i].get();
-		ItemEntry<?>[] arr = LFItems.GEN_ITEM[i];
+		Item item = LWItems.MAT_INGOTS[i].get();
+		ItemEntry<?>[] arr = LWItems.GEN_ITEM[i];
 		unlock(pvd, new ShapedRecipeBuilder(arr[0].get(), 1)::unlockedBy, arr[0].get())
 				.pattern("A A").pattern("A A").define('A', item).save(pvd, getID(arr[0].get()));
 		unlock(pvd, new ShapedRecipeBuilder(arr[1].get(), 1)::unlockedBy, arr[1].get())
@@ -162,7 +162,7 @@ public class RecipeGen {
 	/* special */
 
 	private static void medicine(RegistrateRecipeProvider pvd, Item flower, MobEffect eff, int amp, int duration) {
-		Item item = LFItems.MEDICINE_LEATHER.get();
+		Item item = LWItems.MEDICINE_LEATHER.get();
 		ItemStack stack = new ItemStack(item);
 		MobEffectInstance ins = new MobEffectInstance(eff, duration, amp);
 		PotionUtils.setCustomEffects(stack, List.of(ins));
@@ -172,7 +172,7 @@ public class RecipeGen {
 				.save(pvd, getID(ForgeRegistries.MOB_EFFECTS.getKey(eff).getPath()));
 	}
 
-	private static void medArmor(RegistrateRecipeProvider pvd, Item input, LFItems.ArmorItems<?> out) {
+	private static void medArmor(RegistrateRecipeProvider pvd, Item input, LWItems.ArmorItems<?> out) {
 		unlock(pvd, new MedArmorBuilder(out.armors[0].get(), 1)::unlockedBy, input)
 				.pattern("A A").pattern("A A").define('A', input).save(pvd, getID(out.armors[0].get()));
 		unlock(pvd, new MedArmorBuilder(out.armors[1].get(), 1)::unlockedBy, input)

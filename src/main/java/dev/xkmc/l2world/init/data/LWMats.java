@@ -5,9 +5,9 @@ import dev.xkmc.l2complements.content.item.generic.ExtraArmorConfig;
 import dev.xkmc.l2complements.content.item.generic.ExtraToolConfig;
 import dev.xkmc.l2complements.init.data.GenItem;
 import dev.xkmc.l2complements.init.data.IGeneralMats;
-import dev.xkmc.l2world.init.L2Foundation;
-import dev.xkmc.l2world.init.registrate.LFBlocks;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.L2World;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -82,7 +82,7 @@ public enum LWMats implements IGeneralMats {
 		   SoundEvent equip_sound, ToolStats tool, ArmorStats armor,
 		   ToolConfig tool_config, ArmorConfig armor_config,
 		   ExtraToolConfig tool_extra, ExtraArmorConfig armor_extra) {
-		Supplier<Ingredient> ing = () -> Ingredient.of(LFItems.MAT_INGOTS[ordinal()].get());
+		Supplier<Ingredient> ing = () -> Ingredient.of(LWItems.MAT_INGOTS[ordinal()].get());
 		this.id = name;
 		this.tier = new ForgeTier(level, tool.durability(), tool.speed(), 0, tool.enchant(),
 				getBlockTag(level), ing);
@@ -96,24 +96,24 @@ public enum LWMats implements IGeneralMats {
 	}
 
 	public Item getIngot() {
-		return LFItems.MAT_INGOTS[ordinal()].get();
+		return LWItems.MAT_INGOTS[ordinal()].get();
 	}
 
 	public Item getNugget() {
-		return LFItems.MAT_NUGGETS[ordinal()].get();
+		return LWItems.MAT_NUGGETS[ordinal()].get();
 	}
 
 	public ItemEntry<Item>[][] getGenerated() {
-		return LFItems.GEN_ITEM;
+		return LWItems.GEN_ITEM;
 	}
 
 	@Override
 	public Block getBlock() {
-		return LFBlocks.GEN_BLOCK[ordinal()].get();
+		return LWBlocks.GEN_BLOCK[ordinal()].get();
 	}
 
 	public String armorPrefix() {
-		return L2Foundation.MODID + ":" + id;
+		return L2World.MODID + ":" + id;
 	}
 
 	// --- interface ---

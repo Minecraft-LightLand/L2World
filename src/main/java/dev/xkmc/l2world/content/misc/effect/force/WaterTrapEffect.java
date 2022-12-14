@@ -3,7 +3,7 @@ package dev.xkmc.l2world.content.misc.effect.force;
 import dev.xkmc.l2library.base.effects.api.IconOverlayEffect;
 import dev.xkmc.l2library.base.effects.api.InherentEffect;
 import dev.xkmc.l2library.util.math.MathHelper;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,7 +26,7 @@ public class WaterTrapEffect extends InherentEffect implements IconOverlayEffect
 
 	@Override
 	public ResourceLocation getIcon() {
-		return new ResourceLocation(L2Foundation.MODID, "textures/effect_overlay/water_trap.png");
+		return new ResourceLocation(L2World.MODID, "textures/effect_overlay/water_trap.png");
 	}
 
 }

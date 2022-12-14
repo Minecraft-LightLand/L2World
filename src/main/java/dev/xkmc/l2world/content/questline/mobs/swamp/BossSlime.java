@@ -1,9 +1,9 @@
 package dev.xkmc.l2world.content.questline.mobs.swamp;
 
 import dev.xkmc.l2complements.content.item.generic.GenericTieredItem;
-import dev.xkmc.l2world.init.registrate.LFEffects;
-import dev.xkmc.l2world.init.registrate.LFEntities;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWEffects;
+import dev.xkmc.l2world.init.registrate.LWEntities;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.nbt.CompoundTag;
@@ -34,13 +34,13 @@ public class BossSlime extends MaterialSlime<BossSlime> {
 	public static void loot(RegistrateEntityLootTables table, EntityType<?> type) {
 		table.add(type, new LootTable.Builder()
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.SLIME_TENTACLE.get(), 4, 8, 1))
+						.add(LootTableTemplate.getItem(LWItems.SLIME_TENTACLE.get(), 4, 8, 1))
 						.when(LootTableTemplate.byPlayer()))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.UNSTABLE_SLIME.get(), 4, 8, 1))
+						.add(LootTableTemplate.getItem(LWItems.UNSTABLE_SLIME.get(), 4, 8, 1))
 						.when(LootTableTemplate.byPlayer()))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.BOSS_SLIME.get(), 1, 2, 1))
+						.add(LootTableTemplate.getItem(LWItems.BOSS_SLIME.get(), 1, 2, 1))
 						.when(LootTableTemplate.byPlayer())));
 	}
 
@@ -59,7 +59,7 @@ public class BossSlime extends MaterialSlime<BossSlime> {
 	@Override
 	public void aiStep() {
 		super.aiStep();
-		boolean flag = hasEffect(LFEffects.DISPELL.get()) || hasEffect(LFEffects.CLEANSE.get());
+		boolean flag = hasEffect(LWEffects.DISPELL.get()) || hasEffect(LWEffects.CLEANSE.get());
 		if (this.tickCount % 20 == 0) {
 			if (!flag) {
 				this.heal(1);
@@ -91,7 +91,7 @@ public class BossSlime extends MaterialSlime<BossSlime> {
 
 	@Override
 	public void actuallyHurt(DamageSource source, float damage) {
-		MobEffectInstance ins = getEffect(LFEffects.DISPELL.get());
+		MobEffectInstance ins = getEffect(LWEffects.DISPELL.get());
 		float new_damage = recalculateDamage(source, damage);
 		if (ins != null && new_damage < damage) {
 			int factor = 1 << (ins.getAmplifier() + 1);
@@ -170,21 +170,21 @@ public class BossSlime extends MaterialSlime<BossSlime> {
 
 	private List<EntityType<? extends BaseSlime<?>>> getNext() {
 		ArrayList<EntityType<? extends BaseSlime<?>>> list = new ArrayList<>();
-		list.add(LFEntities.ET_BOSS_SLIME.get());
-		list.add(LFEntities.ET_STONE_SLIME.get());
-		list.add(LFEntities.ET_VINE_SLIME.get());
-		list.add(LFEntities.ET_CARPET_SLIME.get());
+		list.add(LWEntities.ET_BOSS_SLIME.get());
+		list.add(LWEntities.ET_STONE_SLIME.get());
+		list.add(LWEntities.ET_VINE_SLIME.get());
+		list.add(LWEntities.ET_CARPET_SLIME.get());
 		for (int i = 0; i < 4; i++)
-			list.add(LFEntities.ET_POTION_SLIME.get());
+			list.add(LWEntities.ET_POTION_SLIME.get());
 		return list;
 	}
 
 	private EntityType<? extends BaseSlime<?>> getRandomSummon() {
 		return WeightedRandomList.create(
-						WeightedEntry.wrap(LFEntities.ET_STONE_SLIME.get(), 20),
-						WeightedEntry.wrap(LFEntities.ET_VINE_SLIME.get(), 20),
-						WeightedEntry.wrap(LFEntities.ET_CARPET_SLIME.get(), 20),
-						WeightedEntry.wrap(LFEntities.ET_POTION_SLIME.get(), 60))
+						WeightedEntry.wrap(LWEntities.ET_STONE_SLIME.get(), 20),
+						WeightedEntry.wrap(LWEntities.ET_VINE_SLIME.get(), 20),
+						WeightedEntry.wrap(LWEntities.ET_CARPET_SLIME.get(), 20),
+						WeightedEntry.wrap(LWEntities.ET_POTION_SLIME.get(), 60))
 				.getRandom(random).get().getData();
 	}
 

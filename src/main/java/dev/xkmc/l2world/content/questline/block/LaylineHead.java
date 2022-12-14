@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.questline.block;
 
-import dev.xkmc.l2world.init.registrate.LFBlocks;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +28,6 @@ public class LaylineHead extends GrowingPlantHeadBlock {
 
 	@Override
 	protected Block getBodyBlock() {
-		return LFBlocks.LAYROOT_BODY.get();
+		return LWBlocks.LAYROOT_BODY.get();
 	}
 }

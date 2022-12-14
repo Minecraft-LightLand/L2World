@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.misc.effect.assassin;
 
-import dev.xkmc.l2world.init.registrate.LFEffects;
+import dev.xkmc.l2world.init.registrate.LWEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,8 +21,8 @@ public class TargetRemoveEffect extends MobEffect {
 	public void applyEffectTick(LivingEntity self, int level) {
 		if (self instanceof Mob mob) {
 			LivingEntity old = mob.getTarget();
-			if (old != null && !old.hasEffect(LFEffects.T_SINK.get())) {
-				if (level > 0 || old.hasEffect(LFEffects.T_HIDE.get()))
+			if (old != null && !old.hasEffect(LWEffects.T_SINK.get())) {
+				if (level > 0 || old.hasEffect(LWEffects.T_HIDE.get()))
 					mob.setTarget(null);
 			}
 		}

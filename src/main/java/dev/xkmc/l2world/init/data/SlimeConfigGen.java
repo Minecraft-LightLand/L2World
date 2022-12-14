@@ -3,7 +3,7 @@ package dev.xkmc.l2world.init.data;
 import dev.xkmc.l2complements.init.registrate.LCEffects;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2world.content.questline.mobs.swamp.SlimeProperties;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 
@@ -57,7 +57,7 @@ public class SlimeConfigGen {
 						.setAmplifier(1))
 				.add("armor_reduce", new SlimeProperties.SlimeConfig()
 						.setEffect(LCEffects.ARMOR_REDUCE.get())
-						.setDrop(LFItems.ACID_SLIME.get())
+						.setDrop(LWItems.ACID_SLIME.get())
 						.setWeight(50)
 						.setChance(0.1)
 						.setDuration(100)

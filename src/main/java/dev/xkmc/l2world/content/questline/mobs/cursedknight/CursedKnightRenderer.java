@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.questline.mobs.cursedknight;
 
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
@@ -22,6 +22,6 @@ public class CursedKnightRenderer extends HumanoidMobRenderer<BaseCursedKnight<?
 
 	@Override
 	public ResourceLocation getTextureLocation(BaseCursedKnight<?> entity) {
-		return new ResourceLocation(L2Foundation.MODID, "textures/entity/mob/layline_zombie.png");
+		return new ResourceLocation(L2World.MODID, "textures/entity/mob/layline_zombie.png");
 	}
 }

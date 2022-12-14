@@ -2,7 +2,7 @@ package dev.xkmc.l2world.content.misc.recipe;
 
 import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
 import dev.xkmc.l2world.content.misc.equipments.MedicineItem;
-import dev.xkmc.l2world.init.registrate.LFRecipes;
+import dev.xkmc.l2world.init.registrate.LWRecipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -54,7 +54,7 @@ public class MedArmorRecipe extends AbstractShapedRecipe<MedArmorRecipe> {
 
 	@Override
 	public Serializer<MedArmorRecipe> getSerializer() {
-		return LFRecipes.RSC_MED_ARMOR.get();
+		return LWRecipes.RSC_MED_ARMOR.get();
 	}
 
 }

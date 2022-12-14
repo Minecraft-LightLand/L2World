@@ -1,7 +1,7 @@
 package dev.xkmc.l2world.content.questline.block;
 
-import dev.xkmc.l2world.init.registrate.LFBlocks;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,10 +22,10 @@ public class LaylineChargerBlock extends Block {
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
 		ItemStack stack = player.getItemInHand(hand);
 		BlockState below = level.getBlockState(pos.below());
-		if (below.is(LFBlocks.LAYROOT_HEAD.get())) {
-			if (stack.is(LFItems.LAYLINE_ORB.get())) {
+		if (below.is(LWBlocks.LAYROOT_HEAD.get())) {
+			if (stack.is(LWItems.LAYLINE_ORB.get())) {
 				stack.shrink(1);
-				level.setBlockAndUpdate(pos.below(), LFBlocks.LAYLINE_HEAD.getDefaultState());
+				level.setBlockAndUpdate(pos.below(), LWBlocks.LAYLINE_HEAD.getDefaultState());
 				return InteractionResult.SUCCESS;
 			}
 		}

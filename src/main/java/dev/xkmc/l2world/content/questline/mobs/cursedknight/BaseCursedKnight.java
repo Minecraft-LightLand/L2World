@@ -4,7 +4,7 @@ import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootT
 import dev.xkmc.l2library.util.data.LootTableTemplate;
 import dev.xkmc.l2world.content.questline.common.mobs.AlertClassGoal;
 import dev.xkmc.l2world.content.questline.common.mobs.BipedMonster;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
@@ -21,10 +21,10 @@ public class BaseCursedKnight<T extends BaseCursedKnight<T>> extends BipedMonste
 	public static void loot(RegistrateEntityLootTables table, EntityType<?> type) {
 		table.add(type, new LootTable.Builder()
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.KNIGHT_SCRAP.get(), 0, 1, 1))
+						.add(LootTableTemplate.getItem(LWItems.KNIGHT_SCRAP.get(), 0, 1, 1))
 						.when(LootTableTemplate.byPlayer()))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.CURSED_DROPLET.get(), 0, 1))
+						.add(LootTableTemplate.getItem(LWItems.CURSED_DROPLET.get(), 0, 1))
 						.when(LootTableTemplate.byPlayer())
 						.when(LootTableTemplate.chance(0.1f, 0.01f)))
 		);

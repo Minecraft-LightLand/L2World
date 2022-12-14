@@ -12,7 +12,7 @@ import dev.xkmc.l2world.content.misc.effect.force.WaterTrapEffect;
 import dev.xkmc.l2world.content.misc.effect.skill.ArmorBreakerEffect;
 import dev.xkmc.l2world.content.misc.effect.skill.BloodThurstEffect;
 import dev.xkmc.l2world.content.misc.effect.skill.NoKnockBackEffect;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * handles enchantment, mob effects, and potions
  */
-public class LFEffects {
+public class LWEffects {
 
 	public static final RegistryEntry<WaterTrapEffect> WATER_TRAP = genEffect("water_trap", () -> new WaterTrapEffect(MobEffectCategory.HARMFUL, 0x00007f));
 	public static final RegistryEntry<HeavyEffect> HEAVY = genEffect("heavy", () -> new HeavyEffect(MobEffectCategory.HARMFUL, 0x404040));
@@ -60,12 +60,12 @@ public class LFEffects {
 	public static final RegistryEntry<Potion> P_DISPELL_L = genPotion("long_dispell", () -> new Potion(new MobEffectInstance(DISPELL.get(), 1200)));
 
 	public static <T extends MobEffect> RegistryEntry<T> genEffect(String name, NonNullSupplier<T> sup) {
-		return L2Foundation.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2Foundation.REGISTRATE, L2Foundation.REGISTRATE, name, cb, ForgeRegistries.Keys.MOB_EFFECTS, sup))
+		return L2World.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2World.REGISTRATE, L2World.REGISTRATE, name, cb, ForgeRegistries.Keys.MOB_EFFECTS, sup))
 				.lang(MobEffect::getDescriptionId).register();
 	}
 
 	public static <T extends Potion> RegistryEntry<T> genPotion(String name, NonNullSupplier<T> sup) {
-		RegistryEntry<T> ans = L2Foundation.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2Foundation.REGISTRATE, L2Foundation.REGISTRATE, name, cb, ForgeRegistries.Keys.POTIONS, sup)).register();
+		RegistryEntry<T> ans = L2World.REGISTRATE.entry(name, cb -> new NoConfigBuilder<>(L2World.REGISTRATE, L2World.REGISTRATE, name, cb, ForgeRegistries.Keys.POTIONS, sup)).register();
 		POTION_LIST.add(ans);
 		return ans;
 	}
@@ -75,10 +75,10 @@ public class LFEffects {
 	}
 
 	public static void registerBrewingRecipe() {
-		PotionBrewing.addMix(Potions.AWKWARD, LFItems.CLEANSE_WATER_BOTTLE.get(), P_CLEANSE_WATER.get());
+		PotionBrewing.addMix(Potions.AWKWARD, LWItems.CLEANSE_WATER_BOTTLE.get(), P_CLEANSE_WATER.get());
 		PotionBrewing.addMix(P_CLEANSE_WATER.get(), Items.REDSTONE, P_CLEANSE_WATER_L.get());
-		PotionBrewing.addMix(P_CLEANSE_WATER.get(), LFItems.DISPELL_DUST.get(), P_DISPELL.get());
-		PotionBrewing.addMix(P_CLEANSE_WATER_L.get(), LFItems.DISPELL_DUST.get(), P_DISPELL_L.get());
+		PotionBrewing.addMix(P_CLEANSE_WATER.get(), LWItems.DISPELL_DUST.get(), P_DISPELL.get());
+		PotionBrewing.addMix(P_CLEANSE_WATER_L.get(), LWItems.DISPELL_DUST.get(), P_DISPELL_L.get());
 		PotionBrewing.addMix(P_DISPELL.get(), Items.GLOWSTONE_DUST, P_DISPELL_S.get());
 		PotionBrewing.addMix(P_DISPELL.get(), Items.REDSTONE, P_DISPELL_L.get());
 	}

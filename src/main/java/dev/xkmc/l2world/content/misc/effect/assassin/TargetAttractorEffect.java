@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.misc.effect.assassin;
 
-import dev.xkmc.l2world.init.registrate.LFEffects;
+import dev.xkmc.l2world.init.registrate.LWEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -29,9 +29,9 @@ public class TargetAttractorEffect extends MobEffect {
 			if (e.distanceToSqr(self) > radius * radius) continue;
 			LivingEntity le = mob.getTarget();
 			if (le != null) {
-				if (le.hasEffect(LFEffects.T_SINK.get())) continue;
+				if (le.hasEffect(LWEffects.T_SINK.get())) continue;
 			}
-			if (mob.hasEffect(LFEffects.T_SOURCE.get()) || e.distanceToSqr(self) < ar * ar) {
+			if (mob.hasEffect(LWEffects.T_SOURCE.get()) || e.distanceToSqr(self) < ar * ar) {
 				mob.setTarget(self);
 			}
 		}

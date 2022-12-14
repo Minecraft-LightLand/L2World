@@ -7,20 +7,20 @@ import dev.xkmc.l2world.content.questline.mobs.layline.LaylineSkeletonRenderer;
 import dev.xkmc.l2world.content.questline.mobs.layline.LaylineZombie;
 import dev.xkmc.l2world.content.questline.mobs.layline.LaylineZombieRenderer;
 import dev.xkmc.l2world.content.questline.mobs.swamp.*;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
-public class LFEntities {
+public class LWEntities {
 
 	public static final EntityEntry<SlimeTentacle> ET_SLIME_TENTACLE;
 
 	static {
 
-		ET_SLIME_TENTACLE = L2Foundation.REGISTRATE
+		ET_SLIME_TENTACLE = L2World.REGISTRATE
 				.<SlimeTentacle>entity("slime_tentacle", SlimeTentacle::new, MobCategory.MISC)
 				.properties(e -> e.sized(0.5F, 0.5F)
 						.clientTrackingRange(4).updateInterval(20)
@@ -41,44 +41,44 @@ public class LFEntities {
 	public static final EntityEntry<BossSlime> ET_BOSS_SLIME;
 
 	static {
-		ET_LAYLINE_ZOMBIE = L2Foundation.REGISTRATE
+		ET_LAYLINE_ZOMBIE = L2World.REGISTRATE
 				.entity("layline_zombie", LaylineZombie::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(0.6f, 1.95f).clientTrackingRange(8))
 				.renderer(() -> LaylineZombieRenderer::new).loot(LaylineZombie::loot).defaultLang().register();
-		ET_LAYLINE_SKELETON = L2Foundation.REGISTRATE
+		ET_LAYLINE_SKELETON = L2World.REGISTRATE
 				.entity("layline_skeleton", LaylineSkeleton::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(0.6f, 1.95f).clientTrackingRange(8))
 				.renderer(() -> LaylineSkeletonRenderer::new).loot(LaylineSkeleton::loot).defaultLang().register();
-		ET_CURSED_KNIGHT = L2Foundation.REGISTRATE
+		ET_CURSED_KNIGHT = L2World.REGISTRATE
 				.entity("cursed_knight", CursedKnight::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(0.6f, 1.95f).clientTrackingRange(8))
 				.renderer(() -> CursedKnightRenderer::new).loot(BaseCursedKnight::loot).defaultLang().register();
-		ET_CURSED_ARCHER = L2Foundation.REGISTRATE
+		ET_CURSED_ARCHER = L2World.REGISTRATE
 				.entity("cursed_archer", CursedArcher::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(0.6f, 1.95f).clientTrackingRange(8))
 				.renderer(() -> CursedKnightRenderer::new).loot(BaseCursedKnight::loot).defaultLang().register();
-		ET_CURSED_SHIELD = L2Foundation.REGISTRATE
+		ET_CURSED_SHIELD = L2World.REGISTRATE
 				.entity("cursed_shield", CursedShield::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(0.6f, 1.95f).clientTrackingRange(8))
 				.renderer(() -> CursedKnightRenderer::new).loot(BaseCursedKnight::loot).defaultLang().register();
 
-		ET_POTION_SLIME = L2Foundation.REGISTRATE
+		ET_POTION_SLIME = L2World.REGISTRATE
 				.entity("potion_slime", PotionSlime::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(2.04F, 2.04F).clientTrackingRange(10))
 				.renderer(() -> PotionSlimeRenderer::new).loot(PotionSlime::loot).defaultLang().register();
-		ET_STONE_SLIME = L2Foundation.REGISTRATE
+		ET_STONE_SLIME = L2World.REGISTRATE
 				.entity("stone_slime", StoneSlime::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(2.04F, 2.04F).clientTrackingRange(10))
 				.renderer(() -> MaterialSlimeRenderer::new).loot(StoneSlime::loot).defaultLang().register();
-		ET_VINE_SLIME = L2Foundation.REGISTRATE
+		ET_VINE_SLIME = L2World.REGISTRATE
 				.entity("vine_slime", VineSlime::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(2.04F, 2.04F).clientTrackingRange(10))
 				.renderer(() -> MaterialSlimeRenderer::new).loot(VineSlime::loot).defaultLang().register();
-		ET_CARPET_SLIME = L2Foundation.REGISTRATE
+		ET_CARPET_SLIME = L2World.REGISTRATE
 				.entity("carpet_slime", CarpetSlime::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(2.04F, 2.04F).clientTrackingRange(10))
 				.renderer(() -> MaterialSlimeRenderer::new).loot(CarpetSlime::loot).defaultLang().register();
-		ET_BOSS_SLIME = L2Foundation.REGISTRATE
+		ET_BOSS_SLIME = L2World.REGISTRATE
 				.entity("boss_slime", BossSlime::new, MobCategory.MONSTER)
 				.properties(e -> e.sized(2.04F, 2.04F).clientTrackingRange(10))
 				.renderer(() -> MaterialSlimeRenderer::new).loot(BossSlime::loot).defaultLang().register();

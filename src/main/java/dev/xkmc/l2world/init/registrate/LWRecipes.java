@@ -7,9 +7,9 @@ import dev.xkmc.l2world.content.misc.recipe.MedArmorRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static dev.xkmc.l2world.init.L2Foundation.REGISTRATE;
+import static dev.xkmc.l2world.init.L2World.REGISTRATE;
 
-public class LFRecipes {
+public class LWRecipes {
 
 	public static final RegistryEntry<AbstractShapedRecipe.Serializer<MedArmorRecipe>> RSC_MED_ARMOR =
 			reg("medicine_armor", () -> new AbstractShapedRecipe.Serializer<>(MedArmorRecipe::new));

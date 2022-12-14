@@ -1,7 +1,7 @@
 package dev.xkmc.l2world.content.questline.mobs.swamp;
 
 import dev.xkmc.l2world.content.misc.entity.ISizedItemEntity;
-import dev.xkmc.l2world.init.registrate.LFEntities;
+import dev.xkmc.l2world.init.registrate.LWEntities;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
@@ -35,7 +35,7 @@ public class SlimeTentacle extends Projectile implements ISizedItemEntity, ItemS
 	}
 
 	public SlimeTentacle(Level level, LivingEntity entity) {
-		this(LFEntities.ET_SLIME_TENTACLE.get(), level);
+		this(LWEntities.ET_SLIME_TENTACLE.get(), level);
 		setOwner(entity);
 		setPos(getOwnerPos());
 	}

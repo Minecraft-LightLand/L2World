@@ -2,7 +2,7 @@ package dev.xkmc.l2world.content.questline.mobs.swamp;
 
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -21,7 +21,7 @@ public class StoneSlime extends MaterialSlime<StoneSlime> {
 				.withPool(LootTableTemplate.getPool(1, 0)
 						.add(LootTableTemplate.getItem(Items.COBBLESTONE, 0, 1)))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.DIRTY_SLIME.get(), 1))
+						.add(LootTableTemplate.getItem(LWItems.DIRTY_SLIME.get(), 1))
 						.when(LootTableTemplate.chance(0.2f))
 						.when(LootTableTemplate.byPlayer())));
 	}

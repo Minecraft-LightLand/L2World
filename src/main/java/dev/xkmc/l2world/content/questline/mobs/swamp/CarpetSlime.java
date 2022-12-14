@@ -2,8 +2,8 @@ package dev.xkmc.l2world.content.questline.mobs.swamp;
 
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
-import dev.xkmc.l2world.init.registrate.LFBlocks;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -17,7 +17,7 @@ public class CarpetSlime extends MaterialSlime<CarpetSlime> {
 				.withPool(LootTableTemplate.getPool(1, 0)
 						.add(LootTableTemplate.getItem(Items.SLIME_BALL, 0, 2, 1)))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.UNSTABLE_SLIME.get(), 1))
+						.add(LootTableTemplate.getItem(LWItems.UNSTABLE_SLIME.get(), 1))
 						.when(LootTableTemplate.chance(0.05f))
 						.when(LootTableTemplate.byPlayer())));
 	}
@@ -35,7 +35,7 @@ public class CarpetSlime extends MaterialSlime<CarpetSlime> {
 				for (int z = -r; z <= r; z++) {
 					BlockPos pos = blockPosition().offset(x, 0, z);
 					if (level.getBlockState(pos).isAir() && level.getBlockState(pos.below()).isCollisionShapeFullBlock(level, pos.below()))
-						level.setBlockAndUpdate(pos, LFBlocks.SLIME_CARPET.getDefaultState());
+						level.setBlockAndUpdate(pos, LWBlocks.SLIME_CARPET.getDefaultState());
 				}
 		}
 	}

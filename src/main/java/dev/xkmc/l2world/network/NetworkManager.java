@@ -4,7 +4,7 @@ import dev.xkmc.l2library.serial.config.ConfigMerger;
 import dev.xkmc.l2library.serial.network.BaseConfig;
 import dev.xkmc.l2library.serial.network.PacketHandlerWithConfig;
 import dev.xkmc.l2world.content.questline.mobs.swamp.SlimeProperties;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class NetworkManager {
 
 	static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			new ResourceLocation(L2Foundation.MODID, "main"), 1, "l2world_config"
+			new ResourceLocation(L2World.MODID, "main"), 1, "l2world_config"
 	);
 
 	public static Stream<Map.Entry<String, BaseConfig>> getConfigs(ConfigType type) {

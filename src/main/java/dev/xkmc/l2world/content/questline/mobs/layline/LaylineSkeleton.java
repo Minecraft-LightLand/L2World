@@ -2,7 +2,7 @@ package dev.xkmc.l2world.content.questline.mobs.layline;
 
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
 import dev.xkmc.l2library.util.data.LootTableTemplate;
-import dev.xkmc.l2world.init.registrate.LFItems;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -15,7 +15,7 @@ public class LaylineSkeleton extends BaseLaylineMob<LaylineSkeleton> {
 				.withPool(LootTableTemplate.getPool(1, 0)
 						.add(LootTableTemplate.getItem(Items.BONE, 0, 2, 1)))
 				.withPool(LootTableTemplate.getPool(1, 0)
-						.add(LootTableTemplate.getItem(LFItems.LAYLINE_ORB.get(), 1))
+						.add(LootTableTemplate.getItem(LWItems.LAYLINE_ORB.get(), 1))
 						.when(LootTableTemplate.byPlayer())
 						.when(LootTableTemplate.chance(0.1f, 0.01f)))
 		);

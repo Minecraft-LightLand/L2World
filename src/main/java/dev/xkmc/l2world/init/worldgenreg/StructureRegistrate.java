@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import dev.xkmc.l2world.content.questline.world.structure.BaseStructureFeature;
 import dev.xkmc.l2world.content.questline.world.structure.curseknight.CKMazeFeature;
 import dev.xkmc.l2world.content.questline.world.structure.curseknight.CKMazePiece;
-import dev.xkmc.l2world.init.L2Foundation;
+import dev.xkmc.l2world.init.L2World;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
@@ -33,8 +33,8 @@ public class StructureRegistrate {
 		StructureEntry(String feature_name, String piece_name,
 					   StructurePieceType.StructureTemplateType piece_gen,
 					   Codec<S> codec) {
-			this.feature_id = new ResourceLocation(L2Foundation.MODID, feature_name);
-			this.piece_id = new ResourceLocation(L2Foundation.MODID, piece_name);
+			this.feature_id = new ResourceLocation(L2World.MODID, feature_name);
+			this.piece_id = new ResourceLocation(L2World.MODID, piece_name);
 			this.piece_gen = piece_gen;
 			this.codec = codec;
 			LIST.add(this);

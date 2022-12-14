@@ -1,6 +1,6 @@
 package dev.xkmc.l2world.content.misc.equipments;
 
-import dev.xkmc.l2world.init.registrate.LFEffects;
+import dev.xkmc.l2world.init.registrate.LWEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +16,7 @@ public class DaggerItem extends SwordItem {
 	@Override
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity user) {
 		if (!user.level.isClientSide()) {
-			target.addEffect(new MobEffectInstance(LFEffects.T_CLEAR.get(), 100));
+			target.addEffect(new MobEffectInstance(LWEffects.T_CLEAR.get(), 100));
 		}
 		return super.hurtEnemy(stack, user, target);
 	}

@@ -187,6 +187,6 @@
   "item.minecraft.splash_potion.effect.long_dispell": "Item.minecraft.splash Potion.effect.long Dispell",
   "item.minecraft.splash_potion.effect.long_holy_water": "Item.minecraft.splash Potion.effect.long Holy Water",
   "item.minecraft.splash_potion.effect.strong_dispell": "Item.minecraft.splash Potion.effect.strong Dispell",
-  "itemGroup.l2foundation.generated": "L2Fundation Equipments",
-  "itemGroup.l2foundation.material": "L2Fundation Materials"
+  "itemGroup.l2world.generated": "L2Fundation Equipments",
+  "itemGroup.l2world.material": "L2Fundation Materials"
 }

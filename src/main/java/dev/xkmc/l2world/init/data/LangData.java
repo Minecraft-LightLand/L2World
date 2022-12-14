@@ -2,8 +2,8 @@ package dev.xkmc.l2world.init.data;
 
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateLangProvider;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2world.init.L2Foundation;
-import dev.xkmc.l2world.init.registrate.LFEffects;
+import dev.xkmc.l2world.init.L2World;
+import dev.xkmc.l2world.init.registrate.LWEffects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
@@ -31,7 +31,7 @@ public class LangData {
 		public MutableComponent get(Object... objs) {
 			if (objs.length != count)
 				throw new IllegalArgumentException("for " + name() + ": expect " + count + " parameters, got " + objs.length);
-			return translate(L2Foundation.MODID + "." + id, objs);
+			return translate(L2World.MODID + "." + id, objs);
 		}
 
 	}
@@ -56,14 +56,14 @@ public class LangData {
 		for (IDS id : IDS.values()) {
 			String[] strs = id.id.split("\\.");
 			String str = strs[strs.length - 1];
-			pvd.accept(L2Foundation.MODID + "." + id.id,
+			pvd.accept(L2World.MODID + "." + id.id,
 					RegistrateLangProvider.toEnglishName(str) + getParams(id.count));
 		}
-		pvd.accept("itemGroup.l2foundation.material", "L2Fundation Materials");
-		pvd.accept("itemGroup.l2foundation.generated", "L2Fundation Equipments");
+		pvd.accept("itemGroup.l2world.material", "L2Fundation Materials");
+		pvd.accept("itemGroup.l2world.generated", "L2Fundation Equipments");
 
 		List<Item> list = List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION);
-		for (RegistryEntry<? extends Potion> ent : LFEffects.POTION_LIST) {
+		for (RegistryEntry<? extends Potion> ent : LWEffects.POTION_LIST) {
 			for (Item item : list) {
 				String str = ent.get().getName(item.getDescriptionId() + ".effect.");
 				pvd.accept(str, RegistrateLangProvider.toEnglishName(str));

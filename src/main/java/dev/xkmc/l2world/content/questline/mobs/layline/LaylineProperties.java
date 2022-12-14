@@ -5,7 +5,7 @@ import dev.xkmc.l2world.content.questline.common.mobs.BaseMonster;
 import dev.xkmc.l2world.content.questline.common.mobs.SimpleEquipment;
 import dev.xkmc.l2world.content.questline.common.mobs.SoundPackage;
 import dev.xkmc.l2world.init.data.LWMats;
-import dev.xkmc.l2world.init.registrate.LFEntities;
+import dev.xkmc.l2world.init.registrate.LWEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.random.WeightedEntry;
@@ -46,7 +46,7 @@ public class LaylineProperties {
 			wrap(Items.BOW, 100));
 
 	public static final Set<EntityType<?>> ALLY_TYPE = Set.of(
-			LFEntities.ET_LAYLINE_ZOMBIE.get(), LFEntities.ET_LAYLINE_SKELETON.get());
+			LWEntities.ET_LAYLINE_ZOMBIE.get(), LWEntities.ET_LAYLINE_SKELETON.get());
 
 	public static final BaseMonster.EntityConfig CONFIG_ZOMBIE = new BaseMonster.EntityConfig(MobType.UNDEAD, SOUND_ZOMBIE,
 			List.of(LAYLINE_HEAD, LAYLINE_CHEST, LAYLINE_LEGS, LAYLINE_FEET, LAYLINE_MEELEE), List.of(), ALLY_TYPE);
@@ -84,11 +84,11 @@ public class LaylineProperties {
 	public static boolean convert(ServerLevel level, LivingEntity target) {
 		Monster monster = null;
 		if (LaylineProperties.CONVERT_TYPE_ZOMBIE.contains(target.getType()))
-			monster = new LaylineZombie(LFEntities.ET_LAYLINE_ZOMBIE.get(), level);
+			monster = new LaylineZombie(LWEntities.ET_LAYLINE_ZOMBIE.get(), level);
 		if (LaylineProperties.CONVERT_TYPE_SKELETON.contains(target.getType()))
-			monster = new LaylineSkeleton(LFEntities.ET_LAYLINE_SKELETON.get(), level);
-		if (target.getType() == LFEntities.ET_LAYLINE_ZOMBIE.get())
-			monster = new LaylineSkeleton(LFEntities.ET_LAYLINE_SKELETON.get(), level);
+			monster = new LaylineSkeleton(LWEntities.ET_LAYLINE_SKELETON.get(), level);
+		if (target.getType() == LWEntities.ET_LAYLINE_ZOMBIE.get())
+			monster = new LaylineSkeleton(LWEntities.ET_LAYLINE_SKELETON.get(), level);
 		if (monster != null) {
 			monster.copyPosition(target);
 			if (target.hasCustomName())

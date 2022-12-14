@@ -27,8 +27,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(L2Foundation.MODID)
-public class L2Foundation {
+@Mod(L2World.MODID)
+public class L2World {
 
 	public static final String MODID = "l2world";
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -37,12 +37,12 @@ public class L2Foundation {
 
 	private static void registerRegistrates() {
 		ForgeMod.enableMilkFluid();
-		LFBlocks.register();
-		LFEntities.register();
-		LFItems.register();
-		LFRecipes.register();
-		LFEffects.register();
-		LFParticle.register();
+		LWBlocks.register();
+		LWEntities.register();
+		LWItems.register();
+		LWRecipes.register();
+		LWEffects.register();
+		LWParticle.register();
 		WorldGenRegistrate.register();
 		StructureRegistrate.register();
 		NetworkManager.register();
@@ -54,25 +54,25 @@ public class L2Foundation {
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {
-		bus.addListener(L2Foundation::setup);
-		bus.addListener(EventPriority.LOWEST, L2Foundation::gatherData);
-		bus.addListener(L2Foundation::onParticleRegistryEvent);
-		bus.addListener(LFEntities::registerEntityAttributes);
+		bus.addListener(L2World::setup);
+		bus.addListener(EventPriority.LOWEST, L2World::gatherData);
+		bus.addListener(L2World::onParticleRegistryEvent);
+		bus.addListener(LWEntities::registerEntityAttributes);
 	}
 
-	public L2Foundation() {
+	public L2World() {
 		FMLJavaModLoadingContext ctx = FMLJavaModLoadingContext.get();
 		IEventBus bus = ctx.getModEventBus();
 		registerModBusEvents(bus);
-		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> L2FoundationClient.onCtorClient(bus, MinecraftForge.EVENT_BUS));
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> L2WorldClient.onCtorClient(bus, MinecraftForge.EVENT_BUS));
 		registerRegistrates();
 		registerForgeEvents();
 	}
 
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
-			EffectSyncEvents.TRACKED.add(LFEffects.WATER_TRAP.get());
-			LFEffects.registerBrewingRecipe();
+			EffectSyncEvents.TRACKED.add(LWEffects.WATER_TRAP.get());
+			LWEffects.registerBrewingRecipe();
 		});
 		StructureRegistrate.commonSetup(event);
 	}
@@ -83,7 +83,7 @@ public class L2Foundation {
 	}
 
 	public static void onParticleRegistryEvent(RegisterParticleProvidersEvent event) {
-		LFParticle.registerClient();
+		LWParticle.registerClient();
 	}
 
 }
