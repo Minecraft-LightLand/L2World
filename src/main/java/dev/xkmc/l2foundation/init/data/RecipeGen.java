@@ -1,14 +1,14 @@
 package dev.xkmc.l2foundation.init.data;
 
+import dev.xkmc.l2foundation.init.L2Foundation;
+import dev.xkmc.l2foundation.init.registrate.LFBlocks;
+import dev.xkmc.l2foundation.init.registrate.LFItems;
 import dev.xkmc.l2library.base.recipe.ResultTagShapedBuilder;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.l2foundation.init.L2Foundation;
-import dev.xkmc.l2foundation.init.registrate.LFBlocks;
-import dev.xkmc.l2foundation.init.registrate.LFItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -35,12 +35,12 @@ public class RecipeGen {
 		// gen tool and storage
 		{
 			currentFolder = "generated_tools/";
-			for (int i = 0; i < GenItem.Mats.values().length; i++) {
+			for (int i = 0; i < LWMats.values().length; i++) {
 				genTools(pvd, i, Items.STICK);
 			}
 
 			currentFolder = "storage/";
-			for (int i = 0; i < GenItem.Mats.values().length; i++) {
+			for (int i = 0; i < LWMats.values().length; i++) {
 				storage(pvd, LFItems.MAT_NUGGETS[i], LFItems.MAT_INGOTS[i], LFBlocks.GEN_BLOCK[i]);
 			}
 
@@ -49,8 +49,8 @@ public class RecipeGen {
 
 		currentFolder = "quest_line/";
 		{
-			full(pvd, GenItem.Mats.STEEL.getIngot(), LFItems.KNIGHT_SCRAP.get(), Items.GOLD_NUGGET, GenItem.Mats.HEAVYSTEEL.getIngot(), 1);
-			cross(pvd, GenItem.Mats.LAYLINE.getIngot(), LFItems.OLDROOT.get(), GenItem.Mats.OLDROOT.getIngot(), 1);
+			full(pvd, LWMats.STEEL.getIngot(), LFItems.KNIGHT_SCRAP.get(), Items.GOLD_NUGGET, LWMats.HEAVYSTEEL.getIngot(), 1);
+			cross(pvd, LWMats.LAYLINE.getIngot(), LFItems.OLDROOT.get(), LWMats.OLDROOT.getIngot(), 1);
 			unlock(pvd, new ShapedRecipeBuilder(LFBlocks.SLIME_CARPET.get(), 8)::unlockedBy,
 					LFItems.UNSTABLE_SLIME.get()).pattern("ABA")
 					.define('A', Items.SLIME_BALL).define('B', LFItems.UNSTABLE_SLIME.get())

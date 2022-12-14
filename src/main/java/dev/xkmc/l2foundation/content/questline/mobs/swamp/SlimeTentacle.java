@@ -1,6 +1,6 @@
 package dev.xkmc.l2foundation.content.questline.mobs.swamp;
 
-import dev.xkmc.l2foundation.content.entity.ISizedItemEntity;
+import dev.xkmc.l2foundation.content.misc.entity.ISizedItemEntity;
 import dev.xkmc.l2foundation.init.registrate.LFEntities;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.particles.ParticleTypes;

@@ -1,9 +1,10 @@
 package dev.xkmc.l2foundation.content.questline.mobs.layline;
 
+import dev.xkmc.l2complements.init.data.GenItem;
 import dev.xkmc.l2foundation.content.questline.common.mobs.BaseMonster;
 import dev.xkmc.l2foundation.content.questline.common.mobs.SimpleEquipment;
 import dev.xkmc.l2foundation.content.questline.common.mobs.SoundPackage;
-import dev.xkmc.l2foundation.init.data.GenItem;
+import dev.xkmc.l2foundation.init.data.LWMats;
 import dev.xkmc.l2foundation.init.registrate.LFEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -28,18 +29,18 @@ public class LaylineProperties {
 	public static final SoundPackage SOUND_SKELETON = new SoundPackage(SoundEvents.SKELETON_AMBIENT, SoundEvents.SKELETON_HURT, SoundEvents.SKELETON_DEATH, SoundEvents.SKELETON_STEP);
 
 	private static final Function<EquipmentSlot, SimpleEquipment> ARMOR_GEN = (slot) -> genEquip(slot, 0.8, 10, 30,
-			wrap(GenItem.Mats.LAYROOT.getArmor(slot), 70), wrap(GenItem.Mats.LAYLINE.getArmor(slot), 10));
+			wrap(LWMats.LAYROOT.getArmor(slot), 70), wrap(LWMats.LAYLINE.getArmor(slot), 10));
 
 	public static final SimpleEquipment LAYLINE_HEAD = ARMOR_GEN.apply(EquipmentSlot.HEAD);
 	public static final SimpleEquipment LAYLINE_CHEST = ARMOR_GEN.apply(EquipmentSlot.CHEST);
 	public static final SimpleEquipment LAYLINE_LEGS = ARMOR_GEN.apply(EquipmentSlot.LEGS);
 	public static final SimpleEquipment LAYLINE_FEET = ARMOR_GEN.apply(EquipmentSlot.FEET);
 	public static final SimpleEquipment LAYLINE_MEELEE = genEquip(EquipmentSlot.MAINHAND, 1, 10, 30,
-			wrap(GenItem.Mats.LAYROOT.getTool(GenItem.Tools.SWORD), 100), wrap(GenItem.Mats.LAYLINE.getTool(GenItem.Tools.SWORD), 10),
-			wrap(GenItem.Mats.LAYROOT.getTool(GenItem.Tools.AXE), 50), wrap(GenItem.Mats.LAYLINE.getTool(GenItem.Tools.AXE), 5),
-			wrap(GenItem.Mats.LAYROOT.getTool(GenItem.Tools.PICKAXE), 100), wrap(GenItem.Mats.LAYLINE.getTool(GenItem.Tools.PICKAXE), 10),
-			wrap(GenItem.Mats.LAYROOT.getTool(GenItem.Tools.SHOVEL), 50), wrap(GenItem.Mats.LAYLINE.getTool(GenItem.Tools.SHOVEL), 5),
-			wrap(GenItem.Mats.LAYROOT.getTool(GenItem.Tools.HOE), 50), wrap(GenItem.Mats.LAYLINE.getTool(GenItem.Tools.HOE), 5));
+			wrap(LWMats.LAYROOT.getTool(GenItem.Tools.SWORD), 100), wrap(LWMats.LAYLINE.getTool(GenItem.Tools.SWORD), 10),
+			wrap(LWMats.LAYROOT.getTool(GenItem.Tools.AXE), 50), wrap(LWMats.LAYLINE.getTool(GenItem.Tools.AXE), 5),
+			wrap(LWMats.LAYROOT.getTool(GenItem.Tools.PICKAXE), 100), wrap(LWMats.LAYLINE.getTool(GenItem.Tools.PICKAXE), 10),
+			wrap(LWMats.LAYROOT.getTool(GenItem.Tools.SHOVEL), 50), wrap(LWMats.LAYLINE.getTool(GenItem.Tools.SHOVEL), 5),
+			wrap(LWMats.LAYROOT.getTool(GenItem.Tools.HOE), 50), wrap(LWMats.LAYLINE.getTool(GenItem.Tools.HOE), 5));
 
 	public static final SimpleEquipment LAYLINE_BOW = genEquip(EquipmentSlot.MAINHAND, 1, 10, 30,
 			wrap(Items.BOW, 100));

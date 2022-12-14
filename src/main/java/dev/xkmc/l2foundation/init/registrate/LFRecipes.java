@@ -3,7 +3,7 @@ package dev.xkmc.l2foundation.init.registrate;
 import dev.xkmc.l2library.base.recipe.AbstractShapedRecipe;
 import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
-import dev.xkmc.l2foundation.content.recipe.MedArmorRecipe;
+import dev.xkmc.l2foundation.content.misc.recipe.MedArmorRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 

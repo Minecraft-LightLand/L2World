@@ -1,6 +1,6 @@
 package dev.xkmc.l2foundation.init.registrate;
 
-import dev.xkmc.l2foundation.content.entity.SpecialSpriteRenderer;
+import dev.xkmc.l2foundation.content.misc.entity.SpecialSpriteRenderer;
 import dev.xkmc.l2foundation.content.questline.mobs.cursedknight.*;
 import dev.xkmc.l2foundation.content.questline.mobs.layline.LaylineSkeleton;
 import dev.xkmc.l2foundation.content.questline.mobs.layline.LaylineSkeletonRenderer;

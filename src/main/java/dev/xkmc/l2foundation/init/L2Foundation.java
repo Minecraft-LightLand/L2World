@@ -1,7 +1,6 @@
 package dev.xkmc.l2foundation.init;
 
-import dev.xkmc.l2foundation.events.DamageEventListener;
-import dev.xkmc.l2foundation.events.ItemUseEventHandler;
+import dev.xkmc.l2complements.init.data.GenItem;
 import dev.xkmc.l2foundation.events.MiscEventHandler;
 import dev.xkmc.l2foundation.init.data.ConfigGenDispatcher;
 import dev.xkmc.l2foundation.init.data.LangData;
@@ -12,7 +11,6 @@ import dev.xkmc.l2foundation.init.worldgenreg.WorldGenRegistrate;
 import dev.xkmc.l2foundation.network.NetworkManager;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.base.effects.EffectSyncEvents;
-import dev.xkmc.l2library.init.events.attack.AttackEventHandler;
 import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -35,6 +33,7 @@ public class L2Foundation {
 	public static final String MODID = "l2foundation";
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final L2Registrate REGISTRATE = new L2Registrate(MODID);
+	public static final GenItem MATS = new GenItem(MODID, REGISTRATE);
 
 	private static void registerRegistrates() {
 		ForgeMod.enableMilkFluid();
@@ -51,9 +50,7 @@ public class L2Foundation {
 	}
 
 	private static void registerForgeEvents() {
-		MinecraftForge.EVENT_BUS.register(ItemUseEventHandler.class);
 		MinecraftForge.EVENT_BUS.register(MiscEventHandler.class);
-		AttackEventHandler.LISTENERS.add(new DamageEventListener());
 	}
 
 	private static void registerModBusEvents(IEventBus bus) {
@@ -75,9 +72,6 @@ public class L2Foundation {
 	private static void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			EffectSyncEvents.TRACKED.add(LFEffects.WATER_TRAP.get());
-			EffectSyncEvents.TRACKED.add(LFEffects.FLAME.get());
-			EffectSyncEvents.TRACKED.add(LFEffects.EMERALD.get());
-			EffectSyncEvents.TRACKED.add(LFEffects.ICE.get());
 			LFEffects.registerBrewingRecipe();
 		});
 		StructureRegistrate.commonSetup(event);

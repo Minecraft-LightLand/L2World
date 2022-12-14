@@ -1,12 +1,13 @@
 package dev.xkmc.l2foundation.init.registrate;
 
-import dev.xkmc.l2foundation.content.item.equipments.ArmorMat;
-import dev.xkmc.l2foundation.content.item.equipments.MedicineArmor;
-import dev.xkmc.l2foundation.content.item.equipments.MedicineLeather;
+import dev.xkmc.l2complements.init.data.GenItem;
+import dev.xkmc.l2foundation.content.misc.equipments.ArmorMat;
+import dev.xkmc.l2foundation.content.misc.equipments.MedicineArmor;
+import dev.xkmc.l2foundation.content.misc.equipments.MedicineLeather;
 import dev.xkmc.l2foundation.content.questline.item.DispellWaterBottle;
 import dev.xkmc.l2foundation.content.questline.item.SlimeTentacleItem;
 import dev.xkmc.l2foundation.init.L2Foundation;
-import dev.xkmc.l2foundation.init.data.GenItem;
+import dev.xkmc.l2foundation.init.data.LWMats;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
 import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
@@ -21,6 +22,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -74,8 +76,8 @@ public class LFItems {
 
 	static {
 
-		MAT_INGOTS = GenItem.genMats("ingot");
-		MAT_NUGGETS = GenItem.genMats("nugget");
+		MAT_INGOTS = L2Foundation.MATS.genMats(LWMats.values(), "ingot", Tags.Items.INGOTS);
+		MAT_NUGGETS = L2Foundation.MATS.genMats(LWMats.values(), "nugget", Tags.Items.NUGGETS);
 
 		// materials
 		{
@@ -141,7 +143,7 @@ public class LFItems {
 		}
 
 		REGISTRATE.creativeModeTab(() -> TAB_GENERATED);
-		GEN_ITEM = GenItem.genItem();
+		GEN_ITEM = L2Foundation.MATS.genItem(LWMats.values());
 	}
 
 	private static void registerEgg(String id, int col_0, int col_1, Supplier<EntityEntry<? extends Mob>> sup) {

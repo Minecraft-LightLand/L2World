@@ -1,12 +1,12 @@
 package dev.xkmc.l2foundation.init.registrate;
 
+import dev.xkmc.l2foundation.content.questline.block.*;
+import dev.xkmc.l2foundation.init.L2Foundation;
+import dev.xkmc.l2foundation.init.data.LWMats;
 import dev.xkmc.l2library.block.DelegateBlock;
 import dev.xkmc.l2library.block.DelegateBlockProperties;
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateBlockLootTables;
 import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntry;
-import dev.xkmc.l2foundation.content.questline.block.*;
-import dev.xkmc.l2foundation.init.L2Foundation;
-import dev.xkmc.l2foundation.init.data.GenItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.AnvilBlock;
@@ -49,7 +49,7 @@ public class LFBlocks {
 			.blockstate((ctx, pvd) -> pvd.simpleBlock(ctx.getEntry(), pvd.models().withExistingParent(ctx.getName(), "anvil")))
 			.register();
 
-	public static final BlockEntry<Block>[] GEN_BLOCK = GenItem.genBlockMats();
+	public static final BlockEntry<Block>[] GEN_BLOCK = L2Foundation.MATS.genBlockMats(LWMats.values());
 
 	static {
 		{

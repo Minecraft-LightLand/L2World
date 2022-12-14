@@ -1,11 +1,11 @@
 package dev.xkmc.l2foundation.content.questline.mobs.swamp;
 
-import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
-import dev.xkmc.l2library.util.data.LootTableTemplate;
-import dev.xkmc.l2foundation.content.item.generic.GenericTieredItem;
+import dev.xkmc.l2complements.content.item.generic.GenericTieredItem;
 import dev.xkmc.l2foundation.init.registrate.LFEffects;
 import dev.xkmc.l2foundation.init.registrate.LFEntities;
 import dev.xkmc.l2foundation.init.registrate.LFItems;
+import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
+import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;

@@ -5,10 +5,7 @@ import dev.xkmc.l2library.base.effects.api.InherentEffect;
 import dev.xkmc.l2foundation.init.registrate.LFEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Mob;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -18,9 +15,9 @@ import java.util.List;
 public class MiscEventHandler {
 
 	@SubscribeEvent
-	public static void onTargetSet(LivingSetAttackTargetEvent event) {
-		if (event.getTarget() != null && (event.getEntity().hasEffect(LFEffects.T_CLEAR.get()) ||
-				event.getTarget().hasEffect(LFEffects.T_HIDE.get()))) {
+	public static void onTargetSet(LivingChangeTargetEvent event) {
+		if (event.getNewTarget() != null && (event.getEntity().hasEffect(LFEffects.T_CLEAR.get()) ||
+				event.getNewTarget().hasEffect(LFEffects.T_HIDE.get()))) {
 			((Mob) event.getEntity()).setTarget(null);
 		}
 	}

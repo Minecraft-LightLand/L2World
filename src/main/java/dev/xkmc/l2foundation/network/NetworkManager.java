@@ -15,8 +15,7 @@ import static net.minecraftforge.network.NetworkDirection.PLAY_TO_SERVER;
 public class NetworkManager {
 
 	static final PacketHandlerWithConfig HANDLER = new PacketHandlerWithConfig(
-			new ResourceLocation(L2Foundation.MODID, "main"), 1, "l2foundation_config",
-			e -> e.create(EmptyRightClickToServer.class, PLAY_TO_SERVER)
+			new ResourceLocation(L2Foundation.MODID, "main"), 1, "l2world_config"
 	);
 
 	public static Stream<Map.Entry<String, BaseConfig>> getConfigs(ConfigType type) {
