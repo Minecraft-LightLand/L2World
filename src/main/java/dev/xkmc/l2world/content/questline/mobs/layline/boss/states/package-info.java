@@ -1,7 +1,7 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 
-package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.states;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

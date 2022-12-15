@@ -4,6 +4,7 @@ import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardAttackPlayerGoal;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardBodyRotationControl;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardFindTargetGoal;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.states.LayvineFSM;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -40,16 +41,15 @@ public class LayvineEntity extends AbstractGolem {
 
 	@Override
 	public void handleEntityEvent(byte event) {
-		if (event >= 100) {
-			fsm.handleSignal(event - 100);
-		}
-		super.handleEntityEvent(event);
+		if (fsm.isFSMEvent(event)) {
+			fsm.handleFSMEvent(event);
+		} else super.handleEntityEvent(event);
 	}
 
 	@Override
 	protected void tickDeath() {
 		this.deathTime++;
-		if (this.fsm.getState() == LayvineState.DEAD && !this.level.isClientSide()) {
+		if (fsm.isInDeadState() && !this.level.isClientSide()) {
 			this.level.broadcastEntityEvent(this, (byte) 60);
 			this.remove(RemovalReason.KILLED);
 		}

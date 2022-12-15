@@ -1,10 +1,10 @@
 package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower;
 
 import dev.xkmc.l2library.serial.SerialClass;
-import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardConstants;
-import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardFSM;
-import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardState;
-import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardStateType;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.states.LayguardConstants;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.states.LayguardFSM;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.states.LayguardState;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.states.LayguardStateType;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardAttackPlayerGoal;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardBodyRotationControl;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardFindTargetGoal;
@@ -40,7 +40,7 @@ public class LayguardEntity extends AbstractGolem {
 	public void tick() {
 		super.tick();
 		fsm.tick();
-		if (tickCount % LayguardConstants.getHealPeriod() == 0) {
+		if (getHealth() > 0 && tickCount % LayguardConstants.getHealPeriod() == 0) {
 			float rate = fsm.getState().type.healRate;
 			this.heal(rate);
 		}
@@ -48,10 +48,9 @@ public class LayguardEntity extends AbstractGolem {
 
 	@Override
 	public void handleEntityEvent(byte event) {
-		if (event >= 100) {
-			fsm.handleSignal(event - 100);
-		}
-		super.handleEntityEvent(event);
+		if (fsm.isFSMEvent(event)) {
+			fsm.handleFSMEvent(event);
+		} else super.handleEntityEvent(event);
 	}
 
 	@Override
@@ -123,7 +122,7 @@ public class LayguardEntity extends AbstractGolem {
 		return new LayguardBodyRotationControl(this);
 	}
 
-	public boolean startRiding(Entity p_149773_, boolean p_149774_) {
+	public boolean startRiding(Entity vehicle, boolean b) {
 		return false;
 	}
 
@@ -131,7 +130,7 @@ public class LayguardEntity extends AbstractGolem {
 		return Vec3.ZERO;
 	}
 
-	public void setDeltaMovement(Vec3 p_149804_) {
+	public void setDeltaMovement(Vec3 vec3) {
 	}
 
 	// ------ client information ------

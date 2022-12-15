@@ -1,4 +1,4 @@
-package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.states;
 
 import dev.xkmc.l2world.content.questline.common.fsm.ISignal;
 import dev.xkmc.l2world.content.questline.common.fsm.IState;
@@ -39,9 +39,9 @@ public enum LayguardState implements IState<LayguardFSM, LayguardState, Layguard
 			if (fsm.canSummon()) {
 				return fsm.sendSignal(SUMMON_START);
 			}
-			LivingEntity target = fsm.boss.getTarget();
-			if (target != null && fsm.battleCooldown == 0) {
-				if (fsm.boss.distanceTo(target) > LayguardConstants.ATTACK_DISTANCE_THRESHOLD) {
+			LivingEntity target = fsm.entity.getTarget();
+			if (target != null && fsm.battleCD.getTick() == 0) {
+				if (fsm.entity.distanceTo(target) > LayguardConstants.ATTACK_DISTANCE_THRESHOLD) {
 					return fsm.sendSignal(ATTACK_FAR);
 				} else {
 					return fsm.sendSignal(ATTACK_NEAR);
@@ -53,7 +53,7 @@ public enum LayguardState implements IState<LayguardFSM, LayguardState, Layguard
 
 	private static LayguardState stateBattleFind(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.TICK) {
-			if (fsm.tick >= LayguardConstants.BATTLE_FIND_TIMEOUT) {
+			if (fsm.getTick() >= LayguardConstants.BATTLE_FIND_TIMEOUT) {
 				return fsm.sendSignal(RELEASE);
 			}
 			if (fsm.hasValidTarget()) {
@@ -65,37 +65,37 @@ public enum LayguardState implements IState<LayguardFSM, LayguardState, Layguard
 
 	private static LayguardState stateOpening(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.EXIT) {
-			fsm.battleCooldown = LayguardConstants.ATTACK_COOLDOWN_ENTER;
+			fsm.battleCD.set(LayguardConstants.ATTACK_COOLDOWN_ENTER);
 		}
-		return fsm.tick < LayguardConstants.ANIM_OPENING ? OPENING : BATTLE_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_OPENING ? OPENING : BATTLE_WAIT;
 	}
 
 	private static LayguardState stateAttackFar(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.EXIT) {
-			fsm.battleCooldown = LayguardConstants.ATTACK_COOLDOWN_POST;
+			fsm.battleCD.set(LayguardConstants.ATTACK_COOLDOWN_POST);
 		}
 		if (sig == StateSignal.TICK) {
-			if (fsm.tick == LayguardConstants.ATTACK_FAR_ACTION) {
+			if (fsm.getTick() == LayguardConstants.ATTACK_FAR_ACTION) {
 				fsm.attackFar();
 			}
 		}
-		return fsm.tick < LayguardConstants.ANIM_ATTACK_FAR ? ATTACK_FAR : BATTLE_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_ATTACK_FAR ? ATTACK_FAR : BATTLE_WAIT;
 	}
 
 	private static LayguardState stateAttackNear(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.EXIT) {
-			fsm.battleCooldown = LayguardConstants.ATTACK_COOLDOWN_POST;
+			fsm.battleCD.set(LayguardConstants.ATTACK_COOLDOWN_POST);
 		}
 		if (sig == StateSignal.TICK) {
-			if (fsm.tick == LayguardConstants.ATTACK_NEAR_ACTION) {
+			if (fsm.getTick() == LayguardConstants.ATTACK_NEAR_ACTION) {
 				fsm.attackNear();
 			}
 		}
-		return fsm.tick < LayguardConstants.ANIM_ATTACK_NEAR ? ATTACK_NEAR : BATTLE_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_ATTACK_NEAR ? ATTACK_NEAR : BATTLE_WAIT;
 	}
 
 	private static LayguardState stateSummonStart(LayguardFSM fsm, StateSignal sig) {
-		return fsm.tick < LayguardConstants.ANIM_SUMMON_START ? SUMMON_START : SUMMON_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_SUMMON_START ? SUMMON_START : SUMMON_WAIT;
 	}
 
 	private static LayguardState stateSummonWait(LayguardFSM fsm, StateSignal sig) {
@@ -111,21 +111,21 @@ public enum LayguardState implements IState<LayguardFSM, LayguardState, Layguard
 
 	private static LayguardState stateSummonEnd(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.EXIT) {
-			fsm.battleCooldown = LayguardConstants.ATTACK_COOLDOWN_ENTER;
+			fsm.battleCD.set(LayguardConstants.ATTACK_COOLDOWN_ENTER);
 		}
-		return fsm.tick < LayguardConstants.ANIM_SUMMON_END ? SUMMON_END : BATTLE_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_SUMMON_END ? SUMMON_END : BATTLE_WAIT;
 	}
 
 	private static LayguardState stateHideStart(LayguardFSM fsm, StateSignal sig) {
-		return fsm.tick < LayguardConstants.ANIM_HIDE_START ? HIDE_START : HIDE_WAIT;
+		return fsm.getTick() < LayguardConstants.ANIM_HIDE_START ? HIDE_START : HIDE_WAIT;
 	}
 
 	private static LayguardState stateHideWait(LayguardFSM fsm, StateSignal sig) {
 		if (sig == StateSignal.TICK) {
-			if (fsm.boss.hurtTime != 0) {
-				fsm.tick = 0;
+			if (fsm.entity.hurtTime != 0) {
+				fsm.resetTick();
 			}
-			if (fsm.tick >= LayguardConstants.HIDE_WAIT_TIMEOUT || fsm.hasValidTarget()) {
+			if (fsm.getTick() >= LayguardConstants.HIDE_WAIT_TIMEOUT || fsm.hasValidTarget()) {
 				return HIDE_END;
 			}
 		}
@@ -133,15 +133,15 @@ public enum LayguardState implements IState<LayguardFSM, LayguardState, Layguard
 	}
 
 	private static LayguardState stateHideEnd(LayguardFSM fsm, StateSignal sig) {
-		return fsm.tick < LayguardConstants.ANIM_HIDE_END ? HIDE_END : IDLE;
+		return fsm.getTick() < LayguardConstants.ANIM_HIDE_END ? HIDE_END : IDLE;
 	}
 
 	private static LayguardState stateRelease(LayguardFSM fsm, StateSignal sig) {
-		return fsm.tick < LayguardConstants.ANIM_RELEASE ? RELEASE : IDLE;
+		return fsm.getTick() < LayguardConstants.ANIM_RELEASE ? RELEASE : IDLE;
 	}
 
 	private static LayguardState stateDying(LayguardFSM fsm, StateSignal sig) {
-		return fsm.tick < LayguardConstants.ANIM_DYING ? DYING : DEAD;
+		return fsm.getTick() < LayguardConstants.ANIM_DYING ? DYING : DEAD;
 	}
 
 	private static LayguardState stateDead(LayguardFSM fsm, StateSignal sig) {

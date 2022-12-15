@@ -1,6 +1,8 @@
-package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.states;
 
 public class LayguardConstants {
+
+	// flower constants
 
 	public static final int BATTLE_FIND_TIMEOUT = 100;
 	public static final int HIDE_WAIT_TIMEOUT = 40;
@@ -23,5 +25,15 @@ public class LayguardConstants {
 	public static int getHealPeriod() {
 		return 60;
 	}
+
+	// vine constants
+
+	public static final int VINE_ATTACK_ACTION = 5;
+	public static final int VINE_ATTACK_REACH = 3;
+
+	public static final int VINE_ANIM_SPAWN = 20;
+	public static final int VINE_ANIM_ATTACK = 20;
+	public static final int VINE_ANIM_DYING = 20;
+
 
 }
