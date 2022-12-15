@@ -1,4 +1,4 @@
-package dev.xkmc.l2world.content.questline.mobs.layline;
+package dev.xkmc.l2world.content.questline.mobs.layline.mobs;
 
 import dev.xkmc.l2world.init.L2World;
 import net.minecraft.client.model.geom.ModelLayerLocation;

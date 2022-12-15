@@ -2,10 +2,10 @@ package dev.xkmc.l2world.init.registrate;
 
 import dev.xkmc.l2world.content.misc.entity.SpecialSpriteRenderer;
 import dev.xkmc.l2world.content.questline.mobs.cursedknight.*;
-import dev.xkmc.l2world.content.questline.mobs.layline.LaylineSkeleton;
-import dev.xkmc.l2world.content.questline.mobs.layline.LaylineSkeletonRenderer;
-import dev.xkmc.l2world.content.questline.mobs.layline.LaylineZombie;
-import dev.xkmc.l2world.content.questline.mobs.layline.LaylineZombieRenderer;
+import dev.xkmc.l2world.content.questline.mobs.layline.mobs.LaylineSkeleton;
+import dev.xkmc.l2world.content.questline.mobs.layline.mobs.LaylineSkeletonRenderer;
+import dev.xkmc.l2world.content.questline.mobs.layline.mobs.LaylineZombie;
+import dev.xkmc.l2world.content.questline.mobs.layline.mobs.LaylineZombieRenderer;
 import dev.xkmc.l2world.content.questline.mobs.swamp.*;
 import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;

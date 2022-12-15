@@ -1,7 +1,7 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 
-package dev.xkmc.l2world.content.questline.mobs.layline;
+package dev.xkmc.l2world.content.questline.common.fsm;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 
