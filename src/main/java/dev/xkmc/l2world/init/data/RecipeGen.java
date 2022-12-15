@@ -1,14 +1,14 @@
 package dev.xkmc.l2world.init.data;
 
-import dev.xkmc.l2world.init.L2World;
-import dev.xkmc.l2world.init.registrate.LWBlocks;
-import dev.xkmc.l2world.init.registrate.LWItems;
 import dev.xkmc.l2library.base.recipe.ResultTagShapedBuilder;
 import dev.xkmc.l2library.repack.registrate.providers.RegistrateRecipeProvider;
 import dev.xkmc.l2library.repack.registrate.util.DataIngredient;
 import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntry;
 import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
+import dev.xkmc.l2world.init.L2World;
+import dev.xkmc.l2world.init.registrate.LWBlocks;
+import dev.xkmc.l2world.init.registrate.LWItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;

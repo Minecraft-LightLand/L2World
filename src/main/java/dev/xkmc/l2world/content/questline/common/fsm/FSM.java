@@ -21,7 +21,7 @@ public class FSM<F extends FSM<F, T, E>, T extends Enum<T> & IState<F, T, E>, E 
 		onSignal(StateSignal.INIT);
 	}
 
-	public T getState(){
+	public T getState() {
 		return states[state];
 	}
 

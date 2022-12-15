@@ -1,12 +1,12 @@
 package dev.xkmc.l2world.init.registrate;
 
-import dev.xkmc.l2world.content.questline.block.*;
-import dev.xkmc.l2world.init.L2World;
-import dev.xkmc.l2world.init.data.LWMats;
 import dev.xkmc.l2library.block.DelegateBlock;
 import dev.xkmc.l2library.block.DelegateBlockProperties;
 import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateBlockLootTables;
 import dev.xkmc.l2library.repack.registrate.util.entry.BlockEntry;
+import dev.xkmc.l2world.content.questline.block.*;
+import dev.xkmc.l2world.init.L2World;
+import dev.xkmc.l2world.init.data.LWMats;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.AnvilBlock;

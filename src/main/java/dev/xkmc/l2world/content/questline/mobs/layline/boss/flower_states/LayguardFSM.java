@@ -1,27 +1,30 @@
-package dev.xkmc.l2world.content.questline.mobs.layline.boss.states;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states;
 
 import dev.xkmc.l2library.serial.SerialClass;
 import dev.xkmc.l2world.content.questline.common.fsm.FSM;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower.LayguardEntity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 
 @SerialClass
 public class LayguardFSM extends FSM<LayguardFSM, LayguardState, LayguardState> {
 
-	public final Mob boss;
+	public final LayguardEntity boss;
 
 	@SerialClass.SerialField
 	public int battleCooldown;
 	@SerialClass.SerialField
 	public int summonCooldown;
 
-	public LayguardFSM(Mob boss) {
+	public LayguardFSM(LayguardEntity boss) {
 		super(LayguardState.values(), LayguardState.values(), LayguardState.IDLE);
 		this.boss = boss;
 	}
 
 	@Override
 	public LayguardState sendSignal(LayguardState signal) {
+		if (!boss.level.isClientSide()) {
+			boss.level.broadcastEntityEvent(boss, (byte) (100 + signal.ordinal()));
+		}
 		return boss.level.isClientSide() ? getState() : super.sendSignal(signal);
 	}
 

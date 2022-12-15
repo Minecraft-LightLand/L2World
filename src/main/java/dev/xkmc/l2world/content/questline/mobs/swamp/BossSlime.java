@@ -1,11 +1,11 @@
 package dev.xkmc.l2world.content.questline.mobs.swamp;
 
 import dev.xkmc.l2complements.content.item.generic.GenericTieredItem;
+import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
+import dev.xkmc.l2library.util.data.LootTableTemplate;
 import dev.xkmc.l2world.init.registrate.LWEffects;
 import dev.xkmc.l2world.init.registrate.LWEntities;
 import dev.xkmc.l2world.init.registrate.LWItems;
-import dev.xkmc.l2library.repack.registrate.providers.loot.RegistrateEntityLootTables;
-import dev.xkmc.l2library.util.data.LootTableTemplate;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;

@@ -1,7 +1,7 @@
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 
-package dev.xkmc.l2world.content.questline.mobs.layline.boss.states;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.vines;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

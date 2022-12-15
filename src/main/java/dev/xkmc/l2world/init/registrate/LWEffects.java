@@ -1,6 +1,9 @@
 package dev.xkmc.l2world.init.registrate;
 
 
+import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
+import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
+import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2world.content.misc.effect.CleanseEffect;
 import dev.xkmc.l2world.content.misc.effect.DispellEffect;
 import dev.xkmc.l2world.content.misc.effect.assassin.TargetAttractedEffect;
@@ -13,9 +16,6 @@ import dev.xkmc.l2world.content.misc.effect.skill.ArmorBreakerEffect;
 import dev.xkmc.l2world.content.misc.effect.skill.BloodThurstEffect;
 import dev.xkmc.l2world.content.misc.effect.skill.NoKnockBackEffect;
 import dev.xkmc.l2world.init.L2World;
-import dev.xkmc.l2library.repack.registrate.builders.NoConfigBuilder;
-import dev.xkmc.l2library.repack.registrate.util.entry.RegistryEntry;
-import dev.xkmc.l2library.repack.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;

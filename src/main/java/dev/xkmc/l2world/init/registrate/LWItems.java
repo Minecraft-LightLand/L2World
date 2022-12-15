@@ -1,5 +1,11 @@
 package dev.xkmc.l2world.init.registrate;
 
+import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
+import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
+import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
+import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
+import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2world.content.misc.equipments.ArmorMat;
 import dev.xkmc.l2world.content.misc.equipments.MedicineArmor;
 import dev.xkmc.l2world.content.misc.equipments.MedicineLeather;
@@ -7,12 +13,6 @@ import dev.xkmc.l2world.content.questline.item.DispellWaterBottle;
 import dev.xkmc.l2world.content.questline.item.SlimeTentacleItem;
 import dev.xkmc.l2world.init.L2World;
 import dev.xkmc.l2world.init.data.LWMats;
-import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.repack.registrate.builders.ItemBuilder;
-import dev.xkmc.l2library.repack.registrate.providers.DataGenContext;
-import dev.xkmc.l2library.repack.registrate.providers.RegistrateItemModelProvider;
-import dev.xkmc.l2library.repack.registrate.util.entry.EntityEntry;
-import dev.xkmc.l2library.repack.registrate.util.entry.ItemEntry;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;

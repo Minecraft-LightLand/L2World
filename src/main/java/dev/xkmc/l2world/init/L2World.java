@@ -1,6 +1,9 @@
 package dev.xkmc.l2world.init;
 
 import dev.xkmc.l2complements.init.data.GenItem;
+import dev.xkmc.l2library.base.L2Registrate;
+import dev.xkmc.l2library.base.effects.EffectSyncEvents;
+import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import dev.xkmc.l2world.events.MiscEventHandler;
 import dev.xkmc.l2world.init.data.ConfigGenDispatcher;
 import dev.xkmc.l2world.init.data.LangData;
@@ -9,9 +12,6 @@ import dev.xkmc.l2world.init.registrate.*;
 import dev.xkmc.l2world.init.worldgenreg.StructureRegistrate;
 import dev.xkmc.l2world.init.worldgenreg.WorldGenRegistrate;
 import dev.xkmc.l2world.network.NetworkManager;
-import dev.xkmc.l2library.base.L2Registrate;
-import dev.xkmc.l2library.base.effects.EffectSyncEvents;
-import dev.xkmc.l2library.repack.registrate.providers.ProviderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.ForgeMod;

@@ -1,5 +1,10 @@
-package dev.xkmc.l2world.content.questline.mobs.layline.boss;
+package dev.xkmc.l2world.content.questline.mobs.layline.boss.flower;
 
+import dev.xkmc.l2library.serial.SerialClass;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardConstants;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardFSM;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardState;
+import dev.xkmc.l2world.content.questline.mobs.layline.boss.flower_states.LayguardStateType;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardAttackPlayerGoal;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardBodyRotationControl;
 import dev.xkmc.l2world.content.questline.mobs.layline.boss.goals.LayguardFindTargetGoal;
@@ -20,22 +25,75 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+@SerialClass
 public class LayguardEntity extends AbstractGolem {
+
+	@SerialClass.SerialField
+	public final LayguardFSM fsm = new LayguardFSM(this);
 
 	protected LayguardEntity(EntityType<? extends AbstractGolem> type, Level level) {
 		super(type, level);
 	}
 
+	// ------ fsm ------
+
 	public void tick() {
 		super.tick();
+		fsm.tick();
+		if (tickCount % LayguardConstants.getHealPeriod() == 0) {
+			float rate = fsm.getState().type.healRate;
+			this.heal(rate);
+		}
 	}
 
-	public boolean hurt(DamageSource p_33421_, float p_33422_) {
-		return super.hurt(p_33421_, p_33422_);
+	@Override
+	public void handleEntityEvent(byte event) {
+		if (event >= 100) {
+			fsm.handleSignal(event - 100);
+		}
+		super.handleEntityEvent(event);
+	}
+
+	@Override
+	protected void tickDeath() {
+		this.deathTime++;
+		if (this.fsm.getState() == LayguardState.DEAD && !this.level.isClientSide()) {
+			this.level.broadcastEntityEvent(this, (byte) 60);
+			this.remove(Entity.RemovalReason.KILLED);
+		}
+	}
+
+	// ------ damage reduce ------
+
+	public boolean hurt(DamageSource source, float damage) {
+		if (!source.isBypassInvul()) {
+			if (fsm.getState().type == LayguardStateType.IMMUNE) {
+				return false;
+			}
+			if (fsm.getState().type == LayguardStateType.PROTECTED) {
+				if (source.isProjectile()) {
+					return false;
+				}
+			}
+		}
+		return super.hurt(source, damage);
+	}
+
+	@Override
+	public void setHealth(float val) {
+		float prev = getHealth();
+		if (val < prev) {
+			if (fsm.getState().type == LayguardStateType.IMMUNE) {
+				return;
+			}
+			if (fsm.getState().type == LayguardStateType.PROTECTED) {
+				val = Math.max(val, prev - 1);
+			}
+			super.setHealth(val);
+		}
 	}
 
 	// ------ init ------
-
 
 	protected void registerGoals() {
 		this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F, 0.02F, true));
